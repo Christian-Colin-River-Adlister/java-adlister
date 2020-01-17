@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 USE comrad_lister;
 
 INSERT INTO countries(name, continent, level_of_comradery) VALUES ('Grenada','South America', 7);
@@ -60,3 +61,6 @@ INSERT INTO countries(name, continent, level_of_comradery) VALUES ('Baltic State
 
 
 
+=======
+USE comrad_lister;
+>>>>>>> 2ac520e7b40d5aa752d819416910603c0971dc52
