@@ -1,4 +1,4 @@
-package com.codeup.adlister.controllers;
+package com.codeup.comradlister.controllers;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

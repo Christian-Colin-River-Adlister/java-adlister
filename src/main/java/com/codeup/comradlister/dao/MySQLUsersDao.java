@@ -1,7 +1,7 @@
-package com.codeup.adlister.dao;
+package com.codeup.comradlister.dao;
 
-import com.codeup.adlister.Config.Config;
-import com.codeup.adlister.models.User;
+import com.codeup.comradlister.Config.Config;
+import com.codeup.comradlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;

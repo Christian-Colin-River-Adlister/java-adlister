@@ -1,16 +1,13 @@
-package com.codeup.adlister.dao;
+package com.codeup.comradlister.dao;
+
+import com.codeup.comradlister.Config.Config;
 
 public class DaoFactory {
-    private static Ads adsDao;
+    private static Comrads adsDao;
     private static Users usersDao;
+    private static Parties partiesDao;
+    private static Countries countriesDao;
     private static Config config = new Config();
-
-    public static Ads getAdsDao() {
-        if (adsDao == null) {
-            adsDao = new MySQLAdsDao(config);
-        }
-        return adsDao;
-    }
 
     public static Users getUsersDao() {
         if (usersDao == null) {
