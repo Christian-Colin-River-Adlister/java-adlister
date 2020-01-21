@@ -1,10 +1,13 @@
 package com.codeup.comradlister.models;
 
+import java.util.List;
+
 public class Comrad {
     private Long id;
     private String name;
     private String description;
     private Long user_id;
+    private List<Party> parties;
 
     public Comrad(Long id, String name, String description, Long user_id) {
         this.id = id;
@@ -49,5 +52,13 @@ public class Comrad {
 
     public void setUser_id(Long user_id) {
         this.user_id = user_id;
+    }
+
+    public List<Party> getParties() {
+        return parties;
+    }
+
+    public void setParties(List<Party> parties) {
+        this.parties = parties;
     }
 }
