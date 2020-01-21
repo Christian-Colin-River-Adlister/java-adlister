@@ -19,8 +19,11 @@
         <h1>Welcome to the Comradlister!</h1>
     </div>
 
+    <h2>Please log in to access tools</h2>
+    <h2>Would you like to view the comrades?</h2>
+
 <c:set var = "Supreme_Leader" scope = "session" value = "${user.getis_Supreme_Leader}"/>
-<p>Your salary is : <c:out value = "${Supreme_Leader}"/></p>
+<p>Your equality level is : <c:out value = "${Supreme_Leader}"/></p>
 <c:choose>
 
     <c:when test = "${Supreme_Leader}">
@@ -36,15 +39,7 @@
     </c:otherwise>
 </c:choose>
 
-    <form>
-        First name:
-        <input type="text" name="firstname">
 
-        Last name:
-        <input type="text" name="lastname">
-
-        <input type="submit" value="Submit">
-    </form>
 
 </body>
 </html>
