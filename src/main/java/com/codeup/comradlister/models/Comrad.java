@@ -1,5 +1,6 @@
 package com.codeup.comradlister.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Comrad {
@@ -29,6 +30,13 @@ public class Comrad {
         this.description = description;
         this.user_id = user_id;
         this.parties = parties;
+    }
+
+    public Comrad(String test){
+        this.name = test;
+        this.description = "description";
+        this.user_id = 0L;
+        this.parties = new ArrayList<Party>();
     }
 
     public Long getId() {
