@@ -7,6 +7,7 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private String is_Supreme_leader;
 
     public User() {}
 
@@ -54,4 +55,9 @@ public class User {
     public void setPassword(String password) {
         this.password = Password.hash(password);
     }
+
+    public String getIs_Supreme_leader() {
+        return is_Supreme_leader;
+    }
+
 }
