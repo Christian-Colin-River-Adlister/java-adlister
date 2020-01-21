@@ -1,3 +1,4 @@
+DROP DATABASE comrad_lister;
 CREATE DATABASE IF NOT EXISTS comrad_lister;
 
 USE comrad_lister;
@@ -22,7 +23,7 @@ CREATE TABLE IF NOT EXISTS countries
     level_of_comradery INT(10) UNSIGNED NOT NULL,
     PRIMARY KEY (id)
 );
-
+DROP TABLE IF EXISTS parties;
 CREATE TABLE IF NOT EXISTS parties
 (
     id                      INT UNSIGNED AUTO_INCREMENT,
@@ -30,7 +31,6 @@ CREATE TABLE IF NOT EXISTS parties
     description             VARCHAR(255) NOT NULL,
     date_founded            INT UNSIGNED,
     date_dissolved          INT UNSIGNED,
-    country_id              INT UNSIGNED,
     country_of_operation_id INT UNSIGNED,
     flag_url                VARCHAR(255) NOT NULL DEFAULT 'webapp/images/red_flag.png',
     PRIMARY KEY (id)
