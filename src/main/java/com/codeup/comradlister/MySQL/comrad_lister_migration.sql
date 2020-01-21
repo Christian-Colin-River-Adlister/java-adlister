@@ -1,4 +1,6 @@
 
+DROP DATABASE comrad_lister;
+
 CREATE DATABASE IF NOT EXISTS comrad_lister;
 
 USE comrad_lister;
@@ -23,6 +25,8 @@ CREATE TABLE IF NOT EXISTS countries
     level_of_comradery INT(10) UNSIGNED NOT NULL,
     PRIMARY KEY (id)
 );
+
+DROP TABLE IF EXISTS parties;
 CREATE TABLE IF NOT EXISTS parties
 (
     id                      INT UNSIGNED AUTO_INCREMENT,

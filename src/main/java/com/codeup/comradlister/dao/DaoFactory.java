@@ -22,4 +22,11 @@ public class DaoFactory {
         }
         return comradsDao;
     }
+
+    public static Countries getCountriesDao() {
+        if (countriesDao == null) {
+            countriesDao = new MySQLCountriesDao(config);
+        }
+        return countriesDao;
+    }
 }
