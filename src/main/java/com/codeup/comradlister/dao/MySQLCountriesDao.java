@@ -37,7 +37,7 @@ public class MySQLCountriesDao implements Countries {
             ResultSet rs = stmt.executeQuery();
             return createCountriesFromResults(rs);
         } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving all ads.", e);
+            throw new RuntimeException("Error retrieving all countries.", e);
         }
     }
 

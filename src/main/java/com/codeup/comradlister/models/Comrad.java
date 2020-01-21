@@ -24,6 +24,13 @@ public class Comrad {
         this.parties = parties;
     }
 
+    public Comrad(String name, String description, Long user_id, List<Party> parties) {
+        this.name = name;
+        this.description = description;
+        this.user_id = user_id;
+        this.parties = parties;
+    }
+
     public Long getId() {
         return id;
     }
