@@ -1,7 +1,7 @@
 package com.codeup.comradlister.controllers;
 
 import com.codeup.comradlister.dao.DaoFactory;
-import com.codeup.comradlister.models.Ad;
+import com.codeup.comradlister.models.Comrad;
 import com.codeup.comradlister.models.User;
 
 import javax.servlet.ServletException;
@@ -24,12 +24,12 @@ public class CreateComradServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User user = (User) request.getSession().getAttribute("user");
-        Ad ad = new Ad(
-            user.getId(),
-            request.getParameter("title"),
-            request.getParameter("description")
+        Comrad comrad = new Comrad(
+            request.getParameter("name"),
+            request.getParameter("description"),
+            user.getId()
         );
-        DaoFactory.getAdsDao().insert(ad);
+        DaoFactory.getComradsDao().insert(comrad);
         response.sendRedirect("/ads");
     }
 }

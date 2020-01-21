@@ -3,7 +3,7 @@ package com.codeup.comradlister.dao;
 import com.codeup.comradlister.Config.Config;
 
 public class DaoFactory {
-    private static Comrads adsDao;
+    private static Comrads comradsDao;
     private static Users usersDao;
     private static Parties partiesDao;
     private static Countries countriesDao;
@@ -14,5 +14,12 @@ public class DaoFactory {
             usersDao = new MySQLUsersDao(config);
         }
         return usersDao;
+    }
+
+    public static Comrads getComradsDao() {
+        if (comradsDao == null) {
+            comradsDao = new MySQLComradsDao(config);
+        }
+        return comradsDao;
     }
 }
