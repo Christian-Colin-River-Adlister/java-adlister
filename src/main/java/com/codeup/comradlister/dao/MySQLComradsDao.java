@@ -2,6 +2,7 @@ package com.codeup.comradlister.dao;
 
 import com.codeup.comradlister.Config.Config;
 import com.codeup.comradlister.models.Comrad;
+import com.codeup.comradlister.models.Party;
 import com.mysql.cj.jdbc.Driver;
 
 import java.io.FileInputStream;
@@ -77,6 +78,14 @@ public class MySQLComradsDao implements Comrads {
                 rs.getString("flag_url")
 
         );
+    }
+
+    private List<Party> createPartiesFromResults(ResultSet rs) throws SQLException {
+        List<Party> comrads = new ArrayList<>();
+        while (rs.next()) {
+            comrads.add(extractComrad(rs));
+        }
+        return comrads;
     }
 
     private Comrad extractComrad(ResultSet rs) throws SQLException {
