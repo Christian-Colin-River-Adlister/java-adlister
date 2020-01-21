@@ -62,6 +62,21 @@ public class MySQLComradsDao implements Comrads {
         }
     }
 
+    public Long insertComradeParty(Comrad comrad, Party party){
+        try {
+            String insertQuery = "INSERT INTO comrad_lister.comrades_parties(comrade_id, parties_id) VALUES (?, ?)";
+            PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
+            stmt.setLong(1, comrad.getId());
+            stmt.setLong(2, party.getId());
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return rs.getLong(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating a comrade party connection.", e);
+        }
+    }
+
     @Override
     public List<Party> getComradeParties(Comrad comrad) {
         PreparedStatement stmt = null;
