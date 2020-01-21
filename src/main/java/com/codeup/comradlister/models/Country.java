@@ -1,19 +1,19 @@
 package com.codeup.comradlister.models;
 
-public class Countries {
+public class Country {
     private Long id;
     private String name;
     private String continent;
     private int level_of_comradery;
 
-    public Countries(Long id, String name, String continent, int level_of_comradery) {
+    public Country(Long id, String name, String continent, int level_of_comradery) {
         this.id = id;
         this.name = name;
         this.continent = continent;
         this.level_of_comradery = level_of_comradery;
     }
 
-    public Countries(String name, String continent, int level_of_comradery) {
+    public Country(String name, String continent, int level_of_comradery) {
         this.name = name;
         this.continent = continent;
         this.level_of_comradery = level_of_comradery;
