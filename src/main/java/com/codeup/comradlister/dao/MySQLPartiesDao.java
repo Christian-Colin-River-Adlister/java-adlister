@@ -41,10 +41,10 @@ public class MySQLPartiesDao implements Parties {
         );
     }
 
-    @Override
-    public Parties findByName(String name) {
-        return null;
-    }
+//    @Override
+//    public Parties findByName(String name) {
+//        return null;
+//    }
 
     @Override
     public List<Party> all() {
@@ -56,9 +56,6 @@ public class MySQLPartiesDao implements Parties {
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all ads.", e);
         }
-
-
-        return null;
     }
 
     private List<Party> createPartyFromResults(ResultSet rs) throws SQLException {
@@ -76,19 +73,25 @@ public class MySQLPartiesDao implements Parties {
         return new Party(
                 rs.getLong("id"),
                 rs.getString("name"),
-                rs.getInt("date_founded"),
-                rs.getInt("date_dissolved")
-        )
+                rs.getString("description"),
+                rs.getString("date_founded"),
+                rs.getString("date_dissolved"),
+                rs.getLong("country_of_operation_id"),
+                rs.getString("flag_url")
+        );
     }
 
     @Override
     public Long insert(Party party) {
-        String query = "INSERT INTO comrad_lister.parties(name, email, password) VALUES (?, ?, ?)";
+        String query = "INSERT INTO comrad_lister.parties(name, description, date_founded, date_dissolved, country_of_operation_id, flag_url) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getEmail());
-            stmt.setString(3, user.getPassword());
+            stmt.setString(1, party.getName());
+            stmt.setString(2, party.getDescription());
+            stmt.setString(3, party.getDateFounded());
+            stmt.setString(4, party.getDateDissolved());
+            stmt.setLong(5, party.getCountryID());
+            stmt.setString(6, party.getFlagUrl());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
@@ -96,8 +99,5 @@ public class MySQLPartiesDao implements Parties {
         } catch (SQLException e) {
             throw new RuntimeException("Error creating new user", e);
         }
-
-
-        return null;
     }
 }
