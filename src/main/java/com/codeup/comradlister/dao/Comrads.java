@@ -9,5 +9,5 @@ public interface Comrads {
     Comrad findByName(String name);
     List<Comrad> all();
     Long insert(Comrad comrad);
-    List<Party> getParties();
+    List<Parties> getParties();
 }
