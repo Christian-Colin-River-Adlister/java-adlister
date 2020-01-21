@@ -63,18 +63,26 @@ public class MySQLComradsDao implements Comrads {
     }
 
     @Override
-    public List<Party> getParties() {
-        return null;
+    public List<Party> getComradeParties(Comrad comrad) {
+        PreparedStatement stmt = null;
+        try {
+            Long user_id = comrad.getUser_id();
+            stmt = connection.prepareStatement("SELECT * FROM comrad_lister.comrades_parties WHERE comrade_id = "+ user_id +"");
+            ResultSet rs = stmt.executeQuery();
+            return createPartiesFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all ads.", e);
+        }
     }
 
-    private Comrad extractParty(ResultSet rs) throws SQLException {
+    private Party extractParty(ResultSet rs) throws SQLException {
         return new Party(
                 rs.getLong("id"),
                 rs.getString("name"),
                 rs.getString("description"),
                 rs.getString("date_founded"),
                 rs.getString("date_dissolved"),
-                rs.getInt("country_of_operation_id"),
+                rs.getLong("country_of_operation_id"),
                 rs.getString("flag_url")
 
         );
@@ -83,7 +91,7 @@ public class MySQLComradsDao implements Comrads {
     private List<Party> createPartiesFromResults(ResultSet rs) throws SQLException {
         List<Party> comrads = new ArrayList<>();
         while (rs.next()) {
-            comrads.add(extractComrad(rs));
+            comrads.add(extractParty(rs));
         }
         return comrads;
     }
@@ -93,7 +101,9 @@ public class MySQLComradsDao implements Comrads {
                 rs.getLong("id"),
                 rs.getString("name"),
                 rs.getString("description"),
-                rs.getLong("user_id")
+                rs.getLong("user_id"),
+                createPartiesFromResults(rs)
+
         );
     }
 

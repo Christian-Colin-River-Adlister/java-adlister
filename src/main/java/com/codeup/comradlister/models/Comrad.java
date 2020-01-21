@@ -16,10 +16,12 @@ public class Comrad {
         this.user_id = user_id;
     }
 
-    public Comrad(String name, String description, Long user_id) {
+    public Comrad(Long id,String name, String description, Long user_id, List<Party> parties) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.user_id = user_id;
+        this.parties = parties;
     }
 
     public Long getId() {
