@@ -14,10 +14,15 @@
 
     <c:forEach var="comrade" items="${comrades}">
         <div class="comrade">
-            <h2>${comrade.getName()}</h2>
-            <p>${comrade.get()}</p>
-            <div>
-
+            <h2 class="comrade-name">${comrade.getName()}</h2>
+            <p class="comrade-bio">${comrade.getBio()}</p>
+            <div class="comrade-parties">
+                <c:forEach var="party" items="${comrade.getParties()}">
+                    <div>
+                        <img src="${party.getUrl()}" alt="logo" class="party-icon">
+                        <h6 class="comrade-party-name">${party.getName()}</h6>
+                    </div>
+                </c:forEach>
             </div>
         </div>
     </c:forEach>
