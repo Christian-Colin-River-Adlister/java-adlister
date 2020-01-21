@@ -13,6 +13,7 @@ import java.io.IOException;
 public class ComradsIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("comrades", DaoFactory.getComradsDao().all());
+//        request.setAttribute("users", DaoFactory.getUsersDao().);
         request.getRequestDispatcher("/WEB-INF/comrades/comrades.jsp").forward(request, response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

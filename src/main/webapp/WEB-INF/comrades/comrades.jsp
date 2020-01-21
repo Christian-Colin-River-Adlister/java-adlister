@@ -10,12 +10,18 @@
 <%--<jsp:include page="/WEB-INF/partials/navbar.jsp" />--%>
 
 <div class="container">
-    <h1>Here Are all the ads!</h1>
+    <h1>Here Are all the comrades!</h1>
 
     <c:forEach var="comrade" items="${comrades}">
         <div class="comrade">
-            <h2 class="comrade-name">${comrade.getName()}</h2>
-            <p class="comrade-bio">${comrade.getBio()}</p>
+            <div>
+                <button class="delete">X</button>
+                <button class="edit">E</button>
+            </div>
+            <div>
+                <h2 class="comrade-name">${comrade.getName()}</h2>
+                <p class="comrade-bio">${comrade.getBio()}</p>
+            </div>
             <div class="comrade-parties">
                 <c:forEach var="party" items="${comrade.getParties()}">
                     <div>
@@ -23,6 +29,9 @@
                         <h6 class="comrade-party-name">${party.getName()}</h6>
                     </div>
                 </c:forEach>
+            </div>
+            <div>
+
             </div>
         </div>
     </c:forEach>
