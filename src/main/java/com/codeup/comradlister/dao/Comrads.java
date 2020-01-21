@@ -11,5 +11,4 @@ public interface Comrads {
     List<Comrad> all();
     Long insert(Comrad comrad);
     List<Party> getComradeParties(Comrad comrad);
-    List<Parties> getParties();
 }
