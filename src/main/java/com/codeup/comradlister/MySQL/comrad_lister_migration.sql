@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS comrad_lister;
+
 CREATE DATABASE IF NOT EXISTS comrad_lister;
 
 USE comrad_lister;
