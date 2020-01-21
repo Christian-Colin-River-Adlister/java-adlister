@@ -20,14 +20,14 @@
     </div>
 
 <c:set var = "Supreme_Leader" scope = "session" value = "${user.getis_Supreme_Leader}"/>
-<p>Your salary is : <c:out value = "${}"/></p>
+<p>Your salary is : <c:out value = "${Supreme_Leader}"/></p>
 <c:choose>
 
-    <c:when test = "${Supreme_Leader <= 0}">
+    <c:when test = "${Supreme_Leader}">
         Supreme Leader is very low to survive.
     </c:when>
 
-    <c:when test = "${Supreme_Leader > 1000}">
+    <c:when test = "${Supreme_Leader}">
         Supreme Leader is very good.
     </c:when>
 
