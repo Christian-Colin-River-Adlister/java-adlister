@@ -61,6 +61,24 @@ public class MySQLComradsDao implements Comrads {
         }
     }
 
+    @Override
+    public List<Party> getParties() {
+        return null;
+    }
+
+    private Comrad extractParty(ResultSet rs) throws SQLException {
+        return new Party(
+                rs.getLong("id"),
+                rs.getString("name"),
+                rs.getString("description"),
+                rs.getString("date_founded"),
+                rs.getString("date_dissolved"),
+                rs.getInt("country_of_operation_id"),
+                rs.getString("flag_url")
+
+        );
+    }
+
     private Comrad extractComrad(ResultSet rs) throws SQLException {
         return new Comrad(
                 rs.getLong("id"),
