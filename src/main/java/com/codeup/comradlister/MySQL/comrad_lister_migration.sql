@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS users
 );
 
 
-CREATE TABLE IF NOT EXISTS countries
+CREATE TABLE IF NOT EXISTS country
 (
     id                 INT UNSIGNED AUTO_INCREMENT,
     name               VARCHAR(255)     NOT NULL,
