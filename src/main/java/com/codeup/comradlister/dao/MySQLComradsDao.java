@@ -123,16 +123,16 @@ public class MySQLComradsDao implements Comrads {
     }
 
     private List<Comrad> createComradsFromResults(ResultSet rs) throws SQLException {
-        List<Comrad> comrads = new ArrayList<>();
-        while (rs.next()) {
-            comrads.add(extractComrad(rs));
-        }
-        return comrads;
-//        List<Comrad> delete = new ArrayList<>();
-//        delete.add(new Comrad("Daddy Stalin"));
-//        delete.add(new Comrad("Daddy Mao"));
-//        delete.add(new Comrad("Daddy Castro"));
-//        delete.add(new Comrad("Daddy Lenin"));
-//        return delete;
+//        List<Comrad> comrads = new ArrayList<>();
+//        while (rs.next()) {
+//            comrads.add(extractComrad(rs));
+//        }
+//        return comrads;
+        List<Comrad> delete = new ArrayList<>();
+        delete.add(new Comrad("Daddy Stalin"));
+        delete.add(new Comrad("Daddy Mao"));
+        delete.add(new Comrad("Daddy Castro"));
+        delete.add(new Comrad("Daddy Lenin"));
+        return delete;
     }
 }
