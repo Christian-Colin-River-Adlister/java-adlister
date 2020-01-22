@@ -1,7 +1,6 @@
+DROP DATABASE IF EXISTS comrad_lister;
 
-DROP DATABASE comrad_lister;
-
-CREATE DATABASE IF NOT EXISTS comrad_lister;
+CREATE DATABASE comrad_lister;
 
 USE comrad_lister;
 
@@ -17,7 +16,7 @@ CREATE TABLE IF NOT EXISTS users
 );
 
 
-CREATE TABLE IF NOT EXISTS country
+CREATE TABLE IF NOT EXISTS countries
 (
     id                 INT UNSIGNED AUTO_INCREMENT,
     name               VARCHAR(255)     NOT NULL,
@@ -32,8 +31,8 @@ CREATE TABLE IF NOT EXISTS parties
     id                      INT UNSIGNED AUTO_INCREMENT,
     name                    VARCHAR(255) NOT NULL,
     description             VARCHAR(255) NOT NULL,
-    date_founded            DATE NOT NULL ,
-    date_dissolved          DATE NOT NULL ,
+    date_founded            DATE         NOT NULL,
+    date_dissolved          DATE         NOT NULL,
     country_of_operation_id INT UNSIGNED,
     flag_url                VARCHAR(255) NOT NULL DEFAULT 'webapp/images/red_flag.png',
     PRIMARY KEY (id)
@@ -44,6 +43,7 @@ CREATE TABLE IF NOT EXISTS comrades
     id          INT UNSIGNED AUTO_INCREMENT,
     name        VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
+    wiki_link   VARCHAR(255) NOT NULL,
     user_id     INT UNSIGNED,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users (id)
