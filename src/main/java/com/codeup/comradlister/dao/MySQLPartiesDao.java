@@ -1,7 +1,6 @@
 package com.codeup.comradlister.dao;
 
 import com.codeup.comradlister.Config.Config;
-import com.codeup.comradlister.models.Comrad;
 import com.codeup.comradlister.models.Party;
 import com.codeup.comradlister.models.User;
 import com.mysql.cj.jdbc.Driver;
