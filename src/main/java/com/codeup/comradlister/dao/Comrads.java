@@ -2,7 +2,6 @@ package com.codeup.comradlister.dao;
 
 import com.codeup.comradlister.models.Comrad;
 import com.codeup.comradlister.models.Party;
-import com.codeup.comradlister.models.User;
 
 import java.util.List;
 

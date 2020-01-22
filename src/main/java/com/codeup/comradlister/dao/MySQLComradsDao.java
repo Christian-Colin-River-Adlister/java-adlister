@@ -3,11 +3,9 @@ package com.codeup.comradlister.dao;
 import com.codeup.comradlister.Config.Config;
 import com.codeup.comradlister.models.Comrad;
 import com.codeup.comradlister.models.Party;
+
 import com.mysql.cj.jdbc.Driver;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

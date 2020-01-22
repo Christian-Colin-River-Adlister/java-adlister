@@ -13,15 +13,17 @@
         <h2>${sessionScope.signed_in.getBio()}</h2>
     </div>
 
-    <form>
-        First name:<br>
-        <input type="text" name="firstname" value="">
-        <br>
-        Last name:<br>
-        <input type="text" name="lastname" value="">
-        <br><br>
-        <input type="submit" value="Submit">
+    <h2>Please enter your info here!</h2>
+    <form id="userform">
+        Name: <input type="text" name="username">
+    <br>
+    <h2>Enter a description here!</h2>
+    <textarea rows="4" cols="50" name="comment" form="userform">
+    </textarea>
+        <input type="submit">
     </form>
+
+
 
 
 </body>
