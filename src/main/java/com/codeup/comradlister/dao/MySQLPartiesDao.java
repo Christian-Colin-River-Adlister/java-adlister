@@ -37,6 +37,7 @@ public class MySQLPartiesDao implements Parties {
                 rs.getLong("id"),
                 rs.getString("username"),
                 rs.getString("email"),
+                rs.getString("bio"),
                 rs.getString("password")
         );
     }

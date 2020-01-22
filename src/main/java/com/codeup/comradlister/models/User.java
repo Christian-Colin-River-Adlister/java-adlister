@@ -7,21 +7,24 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private String bio;
     private String is_Supreme_leader;
 
     public User() {}
 
-    public User(String username, String email, String password) {
+    public User(String username, String email,String bio, String password) {
         this.username = username;
         this.email = email;
+        this.bio = bio;
         setPassword(password);
     }
 
-    public User(long id, String username, String email, String password) {
+    public User(long id, String username, String email, String password, String bio) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.bio = bio;
     }
 
     public long getId() {
@@ -60,4 +63,11 @@ public class User {
         return is_Supreme_leader;
     }
 
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
 }

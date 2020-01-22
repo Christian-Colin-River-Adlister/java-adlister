@@ -50,7 +50,7 @@
     const cardArea = document.getElementById("country-card-area");
     const searchTerm = document.getElementById('searchTerm');
     var keys = Object.keys(countries);
-    if (searchTerm.value.trim() === null) {
+    if (searchTerm.value.trim() === "") {
         for (let i = 0; i < keys.length; i++) {
             cardArea.innerHTML += '<div class="card float-left mx-3 mb-2  border-dark-shade" style="width: 40%;">\n' +
                 '                    <div class="card-body bg-soft-white ">\n' +
