@@ -16,15 +16,12 @@
     </jsp:include>
 </head>
 <body>
-<h1>Here are all the Countries comrade!</h1>
+<h1>Here are all the Countries affected by wonderful communism comrade!</h1>
 
 <div class="card border-0 w-100" style="width: 18rem;">
-    <div class="card-header text-center border-0 bg-accent">
-        Search by name
-    </div>
     <div class="input-group border-0">
         <input type="text" class="form-control border-0 bg-soft-white no-radius-top" aria-label="Sizing example input"
-               aria-describedby="inputGroup-sizing-default" id="searchTerm">
+               aria-describedby="inputGroup-sizing-default" id="searchTerm" placeholder="Enter search term">
     </div>
 </div>
 
@@ -64,7 +61,8 @@
     searchTerm.addEventListener("input", function () {
         cardArea.innerHTML = '';
         for (let i = 0; i < keys.length; i++) {
-            if (countries[i + 1].name.toLowerCase().includes(searchTerm.value.toLowerCase().trim())) {
+
+            if (countries[i + 1].name.toLowerCase().includes(searchTerm.value.toLowerCase().trim()) || countries[i + 1].continent.toLowerCase().includes(searchTerm.value.toLowerCase().trim()) || countries[i + 1].level === searchTerm.value) {
                 cardArea.innerHTML += '<div class="card float-left mx-3 mb-2  border-dark-shade" style="width: 40%;">\n' +
                     '                    <div class="card-body bg-soft-white ">\n' +
                     '                        <h4 class="card-title text-center ">' + countries[i + 1].name + '</h4>\n' +
