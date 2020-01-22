@@ -1,3 +1,5 @@
+<%@ page import="com.codeup.comradlister.models.Country" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -9,18 +11,71 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Countries</title>
+    <jsp:include page="/WEB-INF/partials/head.jsp">
+        <jsp:param name="title" value="Viewing All The countries"/>
+    </jsp:include>
 </head>
 <body>
 <h1>Here are all the Countries comrade!</h1>
 
-<c:forEach var="country" items="${countries}">
-    <div class="comrade">
-        <h2 class="country-name">${country.getName()}</h2>
-        <p class="comrade-bio">On the continent of ${country.getContinent()}</p>
-        <p class="comrade-bio">Level ${country.getLevel_of_comradery()} communist state</p>
+<div class="card border-0 w-100" style="width: 18rem;">
+    <div class="card-header text-center border-0 bg-accent">
+        Search by name
     </div>
-</c:forEach>
+    <div class="input-group border-0">
+        <input type="text" class="form-control border-0 bg-soft-white no-radius-top" aria-label="Sizing example input"
+               aria-describedby="inputGroup-sizing-default" id="searchTerm">
+    </div>
 </div>
+
+<%
+    List<Country> countries = (List<Country>) session.getAttribute("countries");
+%>
+
+<div id="country-card-area">
+</div>
+<jsp:include page="/WEB-INF/partials/footer.jsp"/>
+
+<script>
+    var countries = {
+        <c:forEach items="${countries}" var="country">
+        "${country.id}": {
+            id: "${country.id}",
+            name: "${country.getName()}",
+            continent: "${country.getContinent()}",
+            level: "${country.getLevel_of_comradery()}"
+        },
+        </c:forEach>
+    };
+    const cardArea = document.getElementById("country-card-area");
+    const searchTerm = document.getElementById('searchTerm');
+    var keys = Object.keys(countries);
+    if (searchTerm.value.trim() === null) {
+        for (let i = 0; i < keys.length; i++) {
+            cardArea.innerHTML += '<div class="card float-left mx-3 mb-2  border-dark-shade" style="width: 40%;">\n' +
+                '                    <div class="card-body bg-soft-white ">\n' +
+                '                        <h4 class="card-title text-center ">' + countries[i + 1].name + '</h4>\n' +
+                '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + countries[i + 1].continent + '</h6>\n' +
+                '                        <p class="card-text text-center">' + countries[i + 1].level + '</p>\n' +
+                '                </div>'
+        }
+
+    }
+    searchTerm.addEventListener("input", function () {
+        cardArea.innerHTML = '';
+        for (let i = 0; i < keys.length; i++) {
+            if (countries[i + 1].name.toLowerCase().startsWith(searchTerm.value.toLowerCase().trim())) {
+                cardArea.innerHTML += '<div class="card float-left mx-3 mb-2  border-dark-shade" style="width: 40%;">\n' +
+                    '                    <div class="card-body bg-soft-white ">\n' +
+                    '                        <h4 class="card-title text-center ">' + countries[i + 1].name + '</h4>\n' +
+                    '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + countries[i + 1].continent + '</h6>\n' +
+                    '                        <p class="card-text text-center">' + countries[i + 1].level + '</p>\n' +
+                    '                </div>'
+            }
+        }
+    });
+</script>
+
+
 </body>
 </html>
