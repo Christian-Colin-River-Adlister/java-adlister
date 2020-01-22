@@ -2,12 +2,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-<%--    <jsp:include page="/WEB-INF/partials/head.jsp">--%>
-<%--        <jsp:param name="title" value="Viewing All The Ads" />--%>
-<%--    </jsp:include>--%>
+    <jsp:include page="/WEB-INF/partials/head.jsp">
+        <jsp:param name="title" value="Viewing All The Ads" />
+    </jsp:include>
 </head>
 <body>
-<%--<jsp:include page="/WEB-INF/partials/navbar.jsp" />--%>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
 <div class="container">
     <h1>Here Are all the comrades!</h1>
@@ -20,7 +20,7 @@
             </div>
             <div>
                 <h2 class="comrade-name">${comrade.getName()}</h2>
-                <p class="comrade-bio">${comrade.getBio()}</p>
+                <p class="comrade-bio">${comrade.getDescription()}</p>
             </div>
             <div class="comrade-parties">
                 <c:forEach var="party" items="${comrade.getParties()}">
@@ -31,7 +31,7 @@
                 </c:forEach>
             </div>
             <div>
-
+                <p>Post by <a href="">tempUserName69</a></p>
             </div>
         </div>
     </c:forEach>

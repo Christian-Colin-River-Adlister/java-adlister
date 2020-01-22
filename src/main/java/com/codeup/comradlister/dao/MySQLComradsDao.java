@@ -128,5 +128,11 @@ public class MySQLComradsDao implements Comrads {
             comrads.add(extractComrad(rs));
         }
         return comrads;
+//        List<Comrad> delete = new ArrayList<>();
+//        delete.add(new Comrad("Daddy Stalin"));
+//        delete.add(new Comrad("Daddy Mao"));
+//        delete.add(new Comrad("Daddy Castro"));
+//        delete.add(new Comrad("Daddy Lenin"));
+//        return delete;
     }
 }
