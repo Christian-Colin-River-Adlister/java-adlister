@@ -43,6 +43,10 @@ INSERT INTO countries(name, continent, level_of_comradery) VALUES ('Russia','Eur
 INSERT INTO countries(name, continent, level_of_comradery) VALUES ('Ukraine','Europe', 3);
 INSERT INTO countries(name, continent, level_of_comradery) VALUES ('Baltic States(Estonia, Latvia, Lithuania)','Eurasia', 5);
 
+INSERT INTO parties(name, description, date_founded, date_dissolved, country_of_operation_id) VALUES ('Communist Party of the Soviet Union (CPSU)','The founding and ruling political party of the Soviet Union. The CPSU was the sole governing party of the Soviet Union until 1990.','1912-01-01','1991-08-29','37');
+
+INSERT INTO comrades(name, description, wiki_link, user_id) VALUES ('Joesph Stalin','Communist dictator of the USSR, responsible for the deaths of millions of people.','https://en.wikipedia.org/wiki/Joseph_Stalin',1)
+
 
 
 

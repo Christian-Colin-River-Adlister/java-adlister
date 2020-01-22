@@ -41,18 +41,19 @@ public class MySQLComradsDao implements Comrads {
             ResultSet rs = stmt.executeQuery();
             return createComradsFromResults(rs);
         } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving all ads.", e);
+            throw new RuntimeException("Error retrieving all comrades.", e);
         }
     }
 
     @Override
     public Long insert(Comrad comrad) {
         try {
-            String insertQuery = "INSERT INTO comrad_lister.comrades(name, description, user_id) VALUES (?, ?, ?)";
+            String insertQuery = "INSERT INTO comrad_lister.comrades(name, description,wiki_link, user_id) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, comrad.getName());
             stmt.setString(2, comrad.getDescription());
-            stmt.setLong(3, comrad.getUser_id());
+            stmt.setString(3, comrad.getWiki_link());
+            stmt.setLong(4, comrad.getUser_id());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
@@ -116,6 +117,7 @@ public class MySQLComradsDao implements Comrads {
                 rs.getLong("id"),
                 rs.getString("name"),
                 rs.getString("description"),
+                rs.getString("wiki_link"),
                 rs.getLong("user_id"),
                 createPartiesFromResults(rs)
 

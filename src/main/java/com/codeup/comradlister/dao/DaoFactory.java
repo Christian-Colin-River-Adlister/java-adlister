@@ -29,4 +29,11 @@ public class DaoFactory {
         }
         return countriesDao;
     }
+
+    public static Parties getPartiesDao() {
+        if (partiesDao == null) {
+            partiesDao = new MySQLPartiesDao(config);
+        }
+        return partiesDao;
+    }
 }

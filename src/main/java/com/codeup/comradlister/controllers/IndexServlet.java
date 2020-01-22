@@ -15,6 +15,7 @@ public class IndexServlet extends HttpServlet {
         request.setAttribute("comrades", DaoFactory.getComradsDao().all());
         request.setAttribute("users", DaoFactory.getUsersDao().all());
         request.setAttribute("countries",DaoFactory.getCountriesDao());
+        request.setAttribute("parties",DaoFactory.getPartiesDao());
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

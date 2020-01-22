@@ -8,26 +8,30 @@ public class Comrad {
     private String name;
     private String description;
     private Long user_id;
+    private String wiki_link;
     private List<Party> parties;
 
-    public Comrad(Long id, String name, String description, Long user_id) {
+    public Comrad(Long id, String name, String description,String wiki_link, Long user_id) {
         this.id = id;
         this.name = name;
+        this.wiki_link = wiki_link;
         this.description = description;
         this.user_id = user_id;
     }
 
-    public Comrad(Long id,String name, String description, Long user_id, List<Party> parties) {
+    public Comrad(Long id,String name, String description,String wiki_link, Long user_id, List<Party> parties) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.wiki_link = wiki_link;
         this.user_id = user_id;
         this.parties = parties;
     }
 
-    public Comrad(String name, String description, Long user_id, List<Party> parties) {
+    public Comrad(String name, String description,String wiki_link, Long user_id, List<Party> parties) {
         this.name = name;
         this.description = description;
+        this.wiki_link = wiki_link;
         this.user_id = user_id;
         this.parties = parties;
     }
@@ -81,5 +85,13 @@ public class Comrad {
 
     public void setParties(List<Party> parties) {
         this.parties = parties;
+    }
+
+    public String getWiki_link() {
+        return wiki_link;
+    }
+
+    public void setWiki_link(String wiki_link) {
+        this.wiki_link = wiki_link;
     }
 }
