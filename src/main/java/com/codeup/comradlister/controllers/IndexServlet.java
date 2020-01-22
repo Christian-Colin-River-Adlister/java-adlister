@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "controllers.ComradsIndexServlet", urlPatterns = "/comrades")
-public class ComradsIndexServlet extends HttpServlet {
+@WebServlet(name = "controllers.IndexServlet", urlPatterns = "/")
+public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("comrades", DaoFactory.getComradsDao().all());
         request.setAttribute("users", DaoFactory.getUsersDao().all());
-        request.getRequestDispatcher("/WEB-INF/comrades/comrades.jsp").forward(request, response);
+        request.setAttribute("countries",DaoFactory.getCountriesDao());
+        request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
