@@ -32,10 +32,10 @@ public class CreateComradServlet extends HttpServlet {
         Config config = new Config();
         MySQLPartiesDao mySQLPartiesDao = new MySQLPartiesDao(config);
         List<Party> allParties = mySQLPartiesDao.all();
-        List<Party> parties = (List<Party>)request.getSession().getAttribute("parties");
-        for(int i = 0; i > parties.size();i++){
-            comradeParties.add(allParties.get(parties.get(i)));
-        }
+//        List<Party> parties = (List<Party>)request.getSession().getAttribute("parties");
+//        for(int i = 0; i > parties.size();i++){
+//            comradeParties.add(allParties.get(parties.get(i)));
+//        }
         Comrad comrad = new Comrad(
             request.getParameter("name"),
             request.getParameter("description"),

@@ -9,6 +9,13 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
+<div class="card border-0 w-100" style="width: 18rem;">
+    <div class="input-group border-0">
+        <input type="text" class="form-control border-0 bg-soft-white no-radius-top" aria-label="Sizing example input"
+               aria-describedby="inputGroup-sizing-default" id="searchTerm" placeholder="Enter search term">
+    </div>
+</div>
+
 <div class="comrades-card-area" id="comrades-card-area">
     <h1>Here Are all the comrades!</h1>
 
@@ -16,6 +23,17 @@
 
 
 <script>
+
+    function searchInParties(string, array) {
+        let bool = false;
+        for (let i = 0; i < array.length; i++){
+            if(array[i].name.toLowerCase().includes(string.toString().toLowerCase().trim())){
+                bool = true;
+            }
+        }
+        return bool;
+    }
+
     var comrades = [
         <c:forEach var="comrade" items="${comrades}">
         {
@@ -40,7 +58,7 @@
     ];
     // const cardArea = document.getElementById("comrades-card-area");
     const cardArea = document.getElementById("comrades-card-area");
-    const searchTerm = {value: ""}; //document.getElementById('searchTerm');
+    const searchTerm = document.getElementById('searchTerm');
     var keys = Object.keys(comrades);
     if (searchTerm.value.trim() === "") {
         for (let i = 0; i < keys.length; i++) {
@@ -59,8 +77,8 @@
     searchTerm.addEventListener("input", function () {
         cardArea.innerHTML = '';
         for (let i = 0; i < keys.length; i++) {
-            if (comrades[i].name.toLowerCase().includes(searchTerm.value.toLowerCase().trim())) {
-                cardArea.innerHTML += '<div class="card float-left mx-3 mb-2  border-dark-shade" style="width: 40%;">\n' +
+            if (comrades[i].name.toLowerCase().includes(searchTerm.value.toLowerCase().trim()) || searchInParties(searchTerm.value, comrades[i].parties)) {
+                cardArea.innerHTML += '<div class="card float-left mx-3 mb-2  border-dark-shade">\n' + //style="width: 40%;"
                     '                    <div class="card-body bg-soft-white ">\n' +
                     '                        <h4 class="card-title text-center ">' + comrades[i].name + '</h4>\n' +
                     '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + comrades[i].description + '</h6>\n' +
