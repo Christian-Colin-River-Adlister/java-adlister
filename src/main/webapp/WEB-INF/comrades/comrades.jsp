@@ -66,7 +66,7 @@
                 newCard += '<div class="card float-left border-dark-shade">\n' + //style="width: 40%;"
                     '                    <div class="card-body bg-soft-white ">\n' +
 
-                    '                        <h4 class="card-title text-center "><a target="_blank" href="' + comrades[i].wiki + '">' + comrades[i].name + '</a></h4>\n' +
+                    '                        <h4 class="card-title text-center "><form action="/comrade" method="POST"> <input type="hidden" name="name" value="' + comrades[i].name + '"> <button type="submit">' + comrades[i].name + '</button></form></h4>' +
                     '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + comrades[i].description + '</h6>\n';
                 for(let i2 = 0; i2 < comrades[i].parties.length; i2++){
                     newCard += "<p class=\"card-text text-center\">" + comrades[i].parties[i2].dateFounded + ' - ' + comrades[i].parties[i2].dateDissolved + "</p>\n";
