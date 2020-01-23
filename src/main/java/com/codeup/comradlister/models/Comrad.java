@@ -41,10 +41,10 @@ public class Comrad {
         this.description = "description";
         this.user_id = 0L;
         this.parties = new ArrayList<Party>();
-        this.parties.add(new Party("test 1"));
-        this.parties.add(new Party("test 2"));
-        this.parties.add(new Party("test 3"));
-        this.parties.add(new Party("test 4"));
+        this.parties.add(new Party("test " + Double.toString(Math.random())));
+        this.parties.add(new Party("test " + Double.toString(Math.random())));
+        this.parties.add(new Party("test " + Double.toString(Math.random())));
+        this.parties.add(new Party("test " + Double.toString(Math.random())));
     }
 
     public Long getId() {
