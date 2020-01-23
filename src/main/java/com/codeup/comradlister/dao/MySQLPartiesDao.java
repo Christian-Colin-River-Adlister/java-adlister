@@ -26,10 +26,8 @@ public class MySQLPartiesDao implements Parties {
     }
 
 
-
-
     private User extractUser(ResultSet rs) throws SQLException {
-        if (! rs.next()) {
+        if (!rs.next()) {
             return null;
         }
         return new User(
@@ -41,20 +39,28 @@ public class MySQLPartiesDao implements Parties {
         );
     }
 
-//    @Override
-//    public Parties findByName(String name) {
-//        return null;
-//    }
+    @Override
+    public Party findByName(String name) {
+        Config config = new Config();
+        MySQLPartiesDao partiesDao = new MySQLPartiesDao(config);
+        List<Party> allParties = partiesDao.all();
+        for(Party party : allParties){
+            if (party.getName().equals(name)){
+                return party;
+            }
+        }
+        return null;
+    }
 
     @Override
     public List<Party> all() {
         PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement("SELECT * FROM comrad_lister.comrades");
+            stmt = connection.prepareStatement("SELECT * FROM comrad_lister.parties");
             ResultSet rs = stmt.executeQuery();
             return createPartyFromResults(rs);
         } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving all ads.", e);
+            throw new RuntimeException("Error retrieving all parties.", e);
         }
     }
 
@@ -67,9 +73,6 @@ public class MySQLPartiesDao implements Parties {
     }
 
     private Party extractParty(ResultSet rs) throws SQLException {
-        if (! rs.next()) {
-            return null;
-        }
         return new Party(
                 rs.getLong("id"),
                 rs.getString("name"),
@@ -97,7 +100,14 @@ public class MySQLPartiesDao implements Parties {
             rs.next();
             return rs.getLong(1);
         } catch (SQLException e) {
-            throw new RuntimeException("Error creating new user", e);
+            throw new RuntimeException("Error creating new party", e);
         }
+    }
+
+    public static void main(String[] args) {
+        Config config = new Config();
+        MySQLPartiesDao partiesDao = new MySQLPartiesDao(config);
+        Party found = partiesDao.findByName("Communist Party of the Soviet Union (CPSU)");
+        System.out.println(found.getName());
     }
 }

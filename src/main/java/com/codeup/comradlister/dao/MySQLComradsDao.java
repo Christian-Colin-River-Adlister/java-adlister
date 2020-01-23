@@ -57,7 +57,7 @@ public class MySQLComradsDao implements Comrads {
             rs.next();
             return rs.getLong(1);
         } catch (SQLException e) {
-            throw new RuntimeException("Error creating a new ad.", e);
+            throw new RuntimeException("Error creating a new Comrade.", e);
         }
     }
 

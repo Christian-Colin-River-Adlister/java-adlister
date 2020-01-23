@@ -13,29 +13,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
+@WebServlet(name = "controllers.CreateComradServlet", urlPatterns = "/comrades/create")
 public class CreateComradServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getSession().getAttribute("user") == null) {
+        if (request.getSession().getAttribute("signed_in") == null) {
             response.sendRedirect("/login");
-            return;
         }
-        request.getRequestDispatcher("/WEB-INF/ads/create.jsp")
-            .forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        User user = (User) request.getSession().getAttribute("user");
-        List<Party> comradeParties = null;
+        User user = (User) request.getSession().getAttribute("signed_in");
+        System.out.println(user.getId());
         Config config = new Config();
         MySQLPartiesDao mySQLPartiesDao = new MySQLPartiesDao(config);
-        List<Party> allParties = mySQLPartiesDao.all();
-//        List<Party> parties = (List<Party>)request.getSession().getAttribute("parties");
-//        for(int i = 0; i > parties.size();i++){
-//            comradeParties.add(allParties.get(parties.get(i)));
-//        }
+        List<Party> comradeParties = new ArrayList<>();
+        String parties = request.getParameter("partyArea");
+        System.out.println(parties);
+        String[] partiesSplit = parties.split(",");
+        for (String s : partiesSplit) {
+            if(s != null && !s.equals("")){
+                Party found = mySQLPartiesDao.findByName(s);
+                comradeParties.add(found);
+            }
+        }
         Comrad comrad = new Comrad(
             request.getParameter("name"),
             request.getParameter("description"),
@@ -44,6 +47,7 @@ public class CreateComradServlet extends HttpServlet {
             comradeParties
         );
         DaoFactory.getComradsDao().insert(comrad);
-        response.sendRedirect("/ads");
+        response.sendRedirect("/comrades");
     }
+
 }
