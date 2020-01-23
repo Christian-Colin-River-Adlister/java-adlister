@@ -8,7 +8,7 @@ public class User {
     private String email;
     private String password;
     private String bio;
-    private String is_Supreme_leader;
+    private Boolean is_Supreme_leader;
 
     public User() {}
 
@@ -19,12 +19,13 @@ public class User {
         setPassword(password);
     }
 
-    public User(long id, String username, String email, String password, String bio) {
+    public User(long id, String username, String email, String password, String bio,Boolean admin) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.bio = bio;
+        this.is_Supreme_leader = admin;
     }
 
     public long getId() {
@@ -59,7 +60,7 @@ public class User {
         this.password = Password.hash(password);
     }
 
-    public String getIs_Supreme_leader() {
+    public Boolean getIs_Supreme_leader() {
         return is_Supreme_leader;
     }
 
