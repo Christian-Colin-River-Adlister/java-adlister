@@ -13,7 +13,6 @@ import java.io.IOException;
 public class CountryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("country", DaoFactory.getCountriesDao().findByName(request.getParameter("name")));
-//        request.setAttribute("countries", DaoFactory.getCountriesDao().all());
         request.getRequestDispatcher("/WEB-INF/comrades/countries.jsp").forward(request, response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
