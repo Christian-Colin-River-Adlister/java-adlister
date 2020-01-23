@@ -37,10 +37,8 @@ public class MySQLComradsDao implements Comrads {
         PreparedStatement stmt2 = null;
         try {
             stmt = connection.prepareStatement("SELECT * FROM comrad_lister.comrades");
-            stmt2 = connection.prepareStatement("SELECT * FROM comrad_lister.parties");
             ResultSet rs = stmt.executeQuery();
-            ResultSet rs2 = stmt2.executeQuery();
-            return createComradsFromResults(rs,rs2);
+           return createComradsFromResults(rs);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all comrades.", e);
         }
@@ -82,15 +80,15 @@ public class MySQLComradsDao implements Comrads {
     }
 
     @Override
-    public List<Party> getComradeParties(Comrad comrad) {
+    public List<Party> getComradeParties(Long id) {
         PreparedStatement stmt = null;
         try {
-            Long user_id = comrad.getUserId();
-            stmt = connection.prepareStatement("SELECT * FROM comrad_lister.comrades_parties WHERE comrade_id = "+ user_id +"");
+            stmt = connection.prepareStatement("SELECT * FROM comrad_lister.parties JOIN comrad_lister.comrades_parties WHERE comrades_parties.comrade_id = ?");
+            stmt.setLong(1,id);
             ResultSet rs = stmt.executeQuery();
             return createPartiesFromResults(rs);
         } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving all ads.", e);
+            throw new RuntimeException("Error retrieving all parties.", e);
         }
     }
 
@@ -115,21 +113,20 @@ public class MySQLComradsDao implements Comrads {
         return comrads;
     }
 
-    private Comrad extractComrad(ResultSet rs,ResultSet rs2) throws SQLException {
+    private Comrad extractComrad(ResultSet rs) throws SQLException {
         return new Comrad(
                 rs.getLong("id"),
                 rs.getString("name"),
                 rs.getString("description"),
                 rs.getString("wiki_link"),
-                rs.getLong("user_id"),
-                createPartiesFromResults(rs2)
+                rs.getLong("user_id")
         );
     }
 
-    private List<Comrad> createComradsFromResults(ResultSet rs,ResultSet rs2) throws SQLException {
+    private List<Comrad> createComradsFromResults(ResultSet rs) throws SQLException {
         List<Comrad> comrads = new ArrayList<>();
         while (rs.next()) {
-            comrads.add(extractComrad(rs,rs2));
+            comrads.add(extractComrad(rs));
         }
         return comrads;
     }

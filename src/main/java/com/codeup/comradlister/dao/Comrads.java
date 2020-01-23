@@ -9,6 +9,6 @@ public interface Comrads {
     Comrad findByName(String name);
     List<Comrad> all();
     Long insert(Comrad comrad);
-    List<Party> getComradeParties(Comrad comrad);
+    List<Party> getComradeParties(Long id);
     Long insertComradeParty(Comrad comrad, Party party);
 }
