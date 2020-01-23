@@ -39,18 +39,18 @@
     const cardArea = document.getElementById("comrades-card-area");
     const searchTerm = document.getElementById('searchTerm');
     const keys = Object.keys(comrade);
-            let newCard = "";
-            newCard += '<div class="card html-editor-align-center border-dark-shade">\n' + //style="width: 40%;"
-                '                    <div class="card-body bg-soft-white ">\n' +
-                '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + comrade.description + '</h6>\n' +
-                '                        <h6 class="card-subtitle mb-2 text-muted text-center"><a target="_blank" href="' + comrade.wiki + '">See ' + comrade.name + '\'s wiki page</a></h6>\n';
+    let newCard = "";
+    newCard += '<div class="card html-editor-align-center border-dark-shade">\n' + //style="width: 40%;"
+        '                    <div class="card-body bg-soft-white ">\n' +
+        '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + comrade.description + '</h6>\n' +
+        '                        <h6 class="card-subtitle mb-2 text-muted text-center"><a target="_blank" href="' + comrade.wiki + '">See ' + comrade.name + '\'s wiki page</a></h6>\n';
     for(let i = 0; i < comrade.parties.length; i++){
-                newCard += "<p class=\"card-text text-center\">" + comrade.parties[i].dateFounded + ' - ' + comrade.parties[i].dateDissolved + "</p>\n";
-                newCard += "<img src='"+ comrade.parties[i].flagUrl +"' alt='icon' class=''>";
-                newCard += '<p class="card-text text-center text-muted">' + comrade.parties[i].name + '</p>';
-            }
-            newCard += '</div></div>';
-            cardArea.innerHTML += newCard;
+        newCard += "<p class=\"card-text text-center\">" + comrade.parties[i].dateFounded + ' - ' + comrade.parties[i].dateDissolved + "</p>\n";
+        newCard += "<img src='"+ comrade.parties[i].flagUrl +"' alt='icon' class=''>";
+        newCard += '<p class="card-text text-center text-muted">' + comrade.parties[i].name + '</p>';
+    }
+    newCard += '</div></div>';
+    cardArea.innerHTML += newCard;
 </script>
 
 
