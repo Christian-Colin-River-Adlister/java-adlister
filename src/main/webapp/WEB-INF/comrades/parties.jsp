@@ -53,7 +53,7 @@
         cardArea.innerHTML = '';
 
         for (let i = 0; i < keys.length; i++) {
-            if (parties[i].name.toLowerCase().includes(searchTerm.value.toLowerCase().trim()) || parties[i].countryID == ) {
+            if (parties[i].name.toLowerCase().includes(searchTerm.value.toLowerCase().trim()) || true) {
                 let newCard = "";
                 newCard += '<div class="card float-left border-dark-shade">\n' + //style="width: 40%;"
                     '                    <div class="card-body bg-soft-white ">\n' +
