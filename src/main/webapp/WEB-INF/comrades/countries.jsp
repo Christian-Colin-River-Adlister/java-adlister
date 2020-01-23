@@ -51,7 +51,7 @@
         for (let i = 0; i < keys.length; i++) {
             cardArea.innerHTML += '<div class="card float-left mx-3 mb-2  border-dark-shade" style="width: 40%;">\n' +
                 '                    <div class="card-body bg-soft-white ">\n' +
-                '                        <h4 class="card-title text-center ">' + countries[i + 1].name + '</h4>\n' +
+                '                        <h4 class="card-title text-center "><form action="/country" method="POST"> <input type="hidden" name="name" value="' + countries[i+1].name + '"> <button type="submit">' + countries[i+1].name + '</button></form>' + '</h4>\n' +
                 '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + countries[i + 1].continent + '</h6>\n' +
                 '                        <p class="card-text text-center">' + countries[i + 1].level + '</p>\n' +
                 '                </div>'
@@ -61,11 +61,10 @@
     searchTerm.addEventListener("input", function () {
         cardArea.innerHTML = '';
         for (let i = 0; i < keys.length; i++) {
-
             if (countries[i + 1].name.toLowerCase().includes(searchTerm.value.toLowerCase().trim()) || countries[i + 1].continent.toLowerCase().includes(searchTerm.value.toLowerCase().trim()) || countries[i + 1].level === searchTerm.value) {
                 cardArea.innerHTML += '<div class="card float-left mx-3 mb-2  border-dark-shade" style="width: 40%;">\n' +
                     '                    <div class="card-body bg-soft-white ">\n' +
-                    '                        <h4 class="card-title text-center ">' + countries[i + 1].name + '</h4>\n' +
+                    '                        <h4 class="card-title text-center "><form action="/country" method="POST"> <input type="hidden" name="name" value="' + countries[i+1].name + '"> <button type="submit">' + countries[i+1].name + '</button></form>' + '</h4>\n' +
                     '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + countries[i + 1].continent + '</h6>\n' +
                     '                        <p class="card-text text-center">' + countries[i + 1].level + '</p>\n' +
                     '                </div>'

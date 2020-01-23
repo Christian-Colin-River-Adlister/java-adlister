@@ -38,7 +38,7 @@
         let newCard = "";
         newCard += '<div class="card float-left border-dark-shade">\n' +
             '                    <div class="card-body bg-soft-white ">\n' +
-            '                        <h4 class="card-title text-center "><a href="' + countries[i].wiki + '">' + countries[i].name + '</h4>\n' +
+            '                        <h4 class="card-title text-center "><form action="/country" method="POST"> <input type="hidden" name="name" value="' + countries[i].name + '"> <button type="submit">' + countries[i].name + '</button></form></h4>\n' +
             '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + countries[i].description + '</h6>\n';
         newCard += '</div></div>';
         cardArea.innerHTML += newCard;
