@@ -150,4 +150,8 @@ public class MySQLComradsDao implements Comrads {
         }
         return comrads;
     }
+
+    public static void main(String[] args) {
+
+    }
 }
