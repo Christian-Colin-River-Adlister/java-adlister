@@ -1,13 +1,7 @@
 <%@ page import="com.codeup.comradlister.models.Country" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: christian174
-  Date: 1/23/20
-  Time: 9:35 AM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -18,6 +12,8 @@
 
 </head>
 <body>
+
+<jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
 <div class="countries" id="Individual-country">
 
@@ -49,5 +45,7 @@
     }
 
 </script>
+
+<jsp:include page="/WEB-INF/partials/footer.jsp"/>
 </body>
 </html>
