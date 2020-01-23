@@ -47,8 +47,7 @@ public class CreateComradServlet extends HttpServlet {
                 request.getParameter("name"),
                 request.getParameter("description"),
                 request.getParameter("wiki_link"),
-                user.getId(),
-                comradeParties
+                user.getId()
         );
         DaoFactory.getComradsDao().insert(comrad);
         for (Party party : comradeParties) {
