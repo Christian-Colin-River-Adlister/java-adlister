@@ -40,16 +40,6 @@ public class MySQLComradsDao implements Comrads {
         }
         return found;
     }
-//    public Comrad findByName(String name) {
-//        PreparedStatement s = null;
-//        try {
-//            s = connection.prepareStatement("SELECT * FROM comrad_lister.comrades WHERE name = '" + name + "' LIMIT 1;");
-//            ResultSet r = s.executeQuery();
-//            return new Comrad(r.getLong("id"), r.getString("name"), r.getString("description"), r.getString("wiki_link"), r.getLong("user_id"));
-//        } catch (Exception e){
-//            throw new RuntimeException("Error retrieving all comrades.", e);
-//        }
-//    }
 
     @Override
     public List<Comrad> all() {

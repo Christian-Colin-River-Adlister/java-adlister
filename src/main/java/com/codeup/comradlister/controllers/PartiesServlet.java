@@ -9,15 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "controllers.ComradServlet", urlPatterns = "/comrade")
-public class ComradServlet extends HttpServlet {
+@WebServlet(name = "controllers.PartiesServlet", urlPatterns = "/parties")
+public class PartiesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("comrade", DaoFactory.getComradsDao().findByName("Stalin"));
+        request.setAttribute("parties", DaoFactory.getPartiesDao().all());
         request.setAttribute("users", DaoFactory.getUsersDao().all());
-        request.getRequestDispatcher("/WEB-INF/comrades/comrades.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/comrades/parties.jsp").forward(request, response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("comrade", DaoFactory.getComradsDao().findByName(request.getParameter("name")));
-        request.getRequestDispatcher("/WEB-INF/comrades/comrade.jsp").forward(request, response);
+
     }
 }
