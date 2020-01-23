@@ -1,3 +1,6 @@
+<%@ page import="com.codeup.comradlister.models.Country" %>
+<%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: christian174
@@ -37,7 +40,12 @@
     const card = document.getElementsByID("country-card");
     for (let i = 1; i < keys.length; i++) {
         let newCard = "";
-        newCard += ''
+        newCard += '<div class="card float-left border-dark-shade">\n' +
+            '                    <div class="card-body bg-soft-white ">\n' +
+            '                        <h4 class="card-title text-center "><a href="' + countries[i].wiki + '">' + countries[i].name + '</h4>\n' +
+            '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + countries[i].description + '</h6>\n';
+        newCard += '</div></div>';
+        cardArea.innerHTML += newCard;
     }
 
 </script>
