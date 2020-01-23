@@ -77,8 +77,8 @@ public class MySQLPartiesDao implements Parties {
                 rs.getLong("id"),
                 rs.getString("name"),
                 rs.getString("description"),
-                rs.getString("date_founded"),
-                rs.getString("date_dissolved"),
+                rs.getDate("date_founded"),
+                rs.getDate("date_dissolved"),
                 rs.getLong("country_of_operation_id"),
                 rs.getString("flag_url")
         );
@@ -91,8 +91,8 @@ public class MySQLPartiesDao implements Parties {
             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, party.getName());
             stmt.setString(2, party.getDescription());
-            stmt.setString(3, party.getDateFounded());
-            stmt.setString(4, party.getDateDissolved());
+            stmt.setDate(3, party.getDateFounded());
+            stmt.setDate(4, party.getDateDissolved());
             stmt.setLong(5, party.getCountryID());
             stmt.setString(6, party.getFlagUrl());
             stmt.executeUpdate();
@@ -109,5 +109,15 @@ public class MySQLPartiesDao implements Parties {
         MySQLPartiesDao partiesDao = new MySQLPartiesDao(config);
         Party found = partiesDao.findByName("Communist Party of the Soviet Union (CPSU)");
         System.out.println(found.getName());
+        String test = "Communist Party of the Soviet Union (CPSU),";
+        String[] split = test.split(",");
+        found = partiesDao.findByName(split[0]);
+        System.out.println(found.getName());
+        for (String s : split) {
+            found = partiesDao.findByName(s);
+            if(found != null){
+                System.out.println(found.getId());;
+            }
+        }
     }
 }

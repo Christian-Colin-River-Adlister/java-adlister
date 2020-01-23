@@ -41,11 +41,11 @@ public class Comrad {
         this.description = "description";
         this.userId = 0L;
         this.parties = new ArrayList<Party>();
-        this.wikiLink = "https://en.wikipedia.org/wiki/Communism";
-        this.parties.add(new Party("test " + Double.toString(Math.random())));
-        this.parties.add(new Party("test " + Double.toString(Math.random())));
-        this.parties.add(new Party("test " + Double.toString(Math.random())));
-        this.parties.add(new Party("test " + Double.toString(Math.random())));
+//        this.parties.add(new Party("test " + Double.toString(Math.random())));
+//        this.parties.add(new Party("test " + Double.toString(Math.random())));
+//        this.parties.add(new Party("test " + Double.toString(Math.random())));
+//        this.parties.add(new Party("test " + Double.toString(Math.random())));
+
     }
 
     public Long getId() {

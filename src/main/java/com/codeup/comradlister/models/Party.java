@@ -1,17 +1,19 @@
 package com.codeup.comradlister.models;
 
+import java.sql.Date;
+
 public class Party {
     private Long id;
     private String name;
     private String description;
-    private String dateFounded;
-    private String dateDissolved;
+    private Date dateFounded;
+    private Date dateDissolved;
     private Long countryID;
     private String flagUrl;
 
     public Party(){}
 
-    public Party(Long id, String name, String description, String dateFounded, String dateDissolved, Long countryID, String flagUrl) {
+    public Party(Long id, String name, String description, Date dateFounded, Date dateDissolved, Long countryID, String flagUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -21,7 +23,7 @@ public class Party {
         this.flagUrl = flagUrl;
     }
 
-    public Party(String name, String description, String dateFounded, String dateDissolved, Long countryID, String flagUrl) {
+    public Party(String name, String description, Date dateFounded, Date dateDissolved, Long countryID, String flagUrl) {
         this.name = name;
         this.description = description;
         this.dateFounded = dateFounded;
@@ -30,14 +32,14 @@ public class Party {
         this.flagUrl = flagUrl;
     }
 
-    public Party(String test){
-        this.name = test;
-        this.description = "test party description";
-        this.dateFounded = "1940";
-        this.dateDissolved = "1969";
-        this.countryID = 0L;
-        this.flagUrl = "none";
-    }
+//    public Party(String test){
+//        this.name = test;
+//        this.description = "test party description";
+//        this.dateFounded = "1940";
+//        this.dateDissolved = "1969";
+//        this.countryID = 0L;
+//        this.flagUrl = "none";
+//    }
 
     public Long getId() {
         return id;
@@ -63,19 +65,19 @@ public class Party {
         this.description = description;
     }
 
-    public String getDateFounded() {
+    public Date getDateFounded() {
         return dateFounded;
     }
 
-    public void setDateFounded(String dateFounded) {
+    public void setDateFounded(Date dateFounded) {
         this.dateFounded = dateFounded;
     }
 
-    public String getDateDissolved() {
+    public Date getDateDissolved() {
         return dateDissolved;
     }
 
-    public void setDateDissolved(String dateDissolved) {
+    public void setDateDissolved(Date dateDissolved) {
         this.dateDissolved = dateDissolved;
     }
 
