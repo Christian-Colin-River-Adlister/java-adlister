@@ -16,9 +16,9 @@ public class MySQLUsersDao implements Users {
         try {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
-                config.getUrl(),
-                config.getUsername(),
-                config.getPassword()
+                    config.getUrl(),
+                    config.getUsername(),
+                    config.getPassword()
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database!", e);
@@ -26,7 +26,7 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
-    public List<User> all(){
+    public List<User> all() {
         PreparedStatement stmt = null;
         try {
             stmt = connection.prepareStatement("SELECT * FROM comrad_lister.users");
@@ -69,15 +69,20 @@ public class MySQLUsersDao implements Users {
     }
 
     private User extractUser(ResultSet rs) throws SQLException {
-        if (! rs.next()) {
+        if (!rs.next()) {
             return null;
         }
+        boolean admin = false;
+        if (rs.getString("is_Supreme_Leader").equals("Y")) {
+            admin = true;
+        }
         return new User(
-            rs.getLong("id"),
-            rs.getString("username"),
-            rs.getString("email"),
-            rs.getString("password"),
-            rs.getString("bio")
+                rs.getLong("id"),
+                rs.getString("username"),
+                rs.getString("email"),
+                rs.getString("password"),
+                rs.getString("bio"),
+                admin
         );
     }
 

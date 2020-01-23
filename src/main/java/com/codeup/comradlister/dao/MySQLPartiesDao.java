@@ -26,18 +26,6 @@ public class MySQLPartiesDao implements Parties {
     }
 
 
-    private User extractUser(ResultSet rs) throws SQLException {
-        if (!rs.next()) {
-            return null;
-        }
-        return new User(
-                rs.getLong("id"),
-                rs.getString("username"),
-                rs.getString("email"),
-                rs.getString("bio"),
-                rs.getString("password")
-        );
-    }
 
     @Override
     public Party findByName(String name) {

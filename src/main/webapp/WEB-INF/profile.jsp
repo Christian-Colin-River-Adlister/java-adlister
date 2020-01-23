@@ -17,7 +17,7 @@
 </div>
 
 <h2>Would you like to enter a new comrade?</h2>
-<form id="userform" action="/comrades/create" method="post">
+<form id="comradeform" action="/comrades/create" method="post">
     <input type="text" name="name" placeholder="Full name">
     <br>
     <textarea rows="4" cols="50" name="description" placeholder="Description here"></textarea>
@@ -33,6 +33,26 @@
     <input type="submit">
     <br>
 </form>
+
+<c:choose>
+    <c:when test="${sessionScope.signed_in.is_Supreme_leader}">
+        <form id="partyform" action="/comrades/create/party" method="post">
+            <input type="text" name="name" placeholder="Name of the party">
+            <br>
+            <textarea rows="4" cols="50" name="description" placeholder="Description here"></textarea>
+            <input type="text" name="date_founded" placeholder="Date Founded">
+            <input type="text" name="date_dissolved" placeholder="Date Dissolved">
+            <select name = "country" id = "country">
+                <c:forEach var="country" items="${sessionScope.countries}">
+                    <option value="${country.id}">${country.name}</option>
+                </c:forEach>
+            </select>
+            <input type="text" name="flag_url" placeholder="Url of the flag">
+            <input type="submit">
+            <br>
+        </form>
+    </c:when>
+</c:choose>
 
 <jsp:include page="/WEB-INF/partials/footer.jsp"/>
 <script>

@@ -17,6 +17,7 @@ public class ViewProfileServlet extends HttpServlet {
             return;
         }
         request.getSession().setAttribute("parties", DaoFactory.getPartiesDao().all());
+        request.getSession().setAttribute("countries", DaoFactory.getCountriesDao().all());
         request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
     }
 }
