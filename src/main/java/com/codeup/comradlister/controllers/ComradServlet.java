@@ -17,8 +17,7 @@ public class ComradServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/comrades/comrades.jsp").forward(request, response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("comrade", DaoFactory.getComradsDao().findByName("Stalin")); //TODO: figure out what to put here to get whatever name
-//        request.setAttribute("users", DaoFactory.getUsersDao().all());
-        request.getRequestDispatcher("/WEB-INF/comrades/comrades.jsp").forward(request, response);
+        request.setAttribute("comrade", DaoFactory.getComradsDao().findByName(request.getParameter("name"))); //TODO: figure out what to put here to get whatever name
+        request.getRequestDispatcher("/WEB-INF/comrades/comrade.jsp").forward(request, response);
     }
 }

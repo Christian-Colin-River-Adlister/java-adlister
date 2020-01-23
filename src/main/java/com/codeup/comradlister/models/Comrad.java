@@ -40,18 +40,6 @@ public class Comrad {
         this.userId = user_id;
     }
 
-    public Comrad(String test){
-        this.name = test;
-        this.description = "description";
-        this.userId = 0L;
-        this.parties = new ArrayList<Party>();
-//        this.parties.add(new Party("test " + Double.toString(Math.random())));
-//        this.parties.add(new Party("test " + Double.toString(Math.random())));
-//        this.parties.add(new Party("test " + Double.toString(Math.random())));
-//        this.parties.add(new Party("test " + Double.toString(Math.random())));
-
-    }
-
     public Long getId() {
         return id;
     }
