@@ -8,18 +8,9 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-
-<div class="card border-0 w-100" style="width: 18rem;">
-    <div class="input-group border-0">
-        <input type="text" class="form-control border-0 bg-soft-white no-radius-top" aria-label="Sizing example input"
-               aria-describedby="inputGroup-sizing-default" id="searchTerm" placeholder="Enter search term">
-    </div>
-</div>
-
 <div class="comrades-card-area" id="comrades-card-area">
 
 </div>
-
 
 <script>
 
@@ -49,11 +40,11 @@
     const searchTerm = document.getElementById('searchTerm');
     const keys = Object.keys(comrade);
             let newCard = "";
-            newCard += '<div class="card float-left border-dark-shade">\n' + //style="width: 40%;"
+            newCard += '<div class="card html-editor-align-center border-dark-shade">\n' + //style="width: 40%;"
                 '                    <div class="card-body bg-soft-white ">\n' +
-                '                        <h4 class="card-title text-center "><a target="_blank" href="' + comrade.wiki + '">' + comrade.name + '</a></h4>\n' +
-                '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + comrade.description + '</h6>\n';
-            for(let i2 = 0; i < comrade.parties.length; i++){
+                '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + comrade.description + '</h6>\n' +
+                '                        <h6 class="card-subtitle mb-2 text-muted text-center"><a target="_blank" href="' + comrade.wiki + '">See ' + comrade.name + '\'s wiki page</a></h6>\n';
+    for(let i = 0; i < comrade.parties.length; i++){
                 newCard += "<p class=\"card-text text-center\">" + comrade.parties[i].dateFounded + ' - ' + comrade.parties[i].dateDissolved + "</p>\n";
                 newCard += "<img src='"+ comrade.parties[i].flagUrl +"' alt='icon' class=''>";
                 newCard += '<p class="card-text text-center text-muted">' + comrade.parties[i].name + '</p>';
