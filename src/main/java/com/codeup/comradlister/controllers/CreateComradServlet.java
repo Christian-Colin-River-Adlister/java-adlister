@@ -2,6 +2,7 @@ package com.codeup.comradlister.controllers;
 
 import com.codeup.comradlister.Config.Config;
 import com.codeup.comradlister.dao.DaoFactory;
+import com.codeup.comradlister.dao.MySQLComradsDao;
 import com.codeup.comradlister.dao.MySQLPartiesDao;
 import com.codeup.comradlister.models.Comrad;
 import com.codeup.comradlister.models.Party;
@@ -29,24 +30,30 @@ public class CreateComradServlet extends HttpServlet {
         System.out.println(user.getId());
         Config config = new Config();
         MySQLPartiesDao mySQLPartiesDao = new MySQLPartiesDao(config);
+        MySQLComradsDao mySQLComradsDao = new MySQLComradsDao(config);
+        List<Comrad> allComrades = mySQLComradsDao.all();
         List<Party> comradeParties = new ArrayList<>();
         String parties = request.getParameter("partyArea");
         System.out.println(parties);
         String[] partiesSplit = parties.split(",");
         for (String s : partiesSplit) {
-            if(s != null && !s.equals("")){
-                Party found = mySQLPartiesDao.findByName(s);
+            Party found = mySQLPartiesDao.findByName(s);
+            if(found != null){
                 comradeParties.add(found);
             }
         }
         Comrad comrad = new Comrad(
-            request.getParameter("name"),
-            request.getParameter("description"),
-            request.getParameter("wiki_link"),
-            user.getId(),
-            comradeParties
+                (long)allComrades.size()+1,
+                request.getParameter("name"),
+                request.getParameter("description"),
+                request.getParameter("wiki_link"),
+                user.getId(),
+                comradeParties
         );
         DaoFactory.getComradsDao().insert(comrad);
+        for (Party party : comradeParties) {
+            DaoFactory.getComradsDao().insertComradeParty(comrad, party);
+        }
         response.sendRedirect("/comrades");
     }
 

@@ -34,10 +34,13 @@ public class MySQLComradsDao implements Comrads {
     @Override
     public List<Comrad> all() {
         PreparedStatement stmt = null;
+        PreparedStatement stmt2 = null;
         try {
             stmt = connection.prepareStatement("SELECT * FROM comrad_lister.comrades");
+            stmt2 = connection.prepareStatement("SELECT * FROM comrad_lister.parties");
             ResultSet rs = stmt.executeQuery();
-            return createComradsFromResults(rs);
+            ResultSet rs2 = stmt2.executeQuery();
+            return createComradsFromResults(rs,rs2);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all comrades.", e);
         }
@@ -69,8 +72,10 @@ public class MySQLComradsDao implements Comrads {
             stmt.setLong(2, party.getId());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
-            rs.next();
-            return rs.getLong(1);
+            if(rs.next()){
+                return rs.getLong(1);
+            }
+            return null;
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a comrade party connection.", e);
         }
@@ -94,8 +99,8 @@ public class MySQLComradsDao implements Comrads {
                 rs.getLong("id"),
                 rs.getString("name"),
                 rs.getString("description"),
-                rs.getString("date_founded"),
-                rs.getString("date_dissolved"),
+                rs.getDate("date_founded"),
+                rs.getDate("date_dissolved"),
                 rs.getLong("country_of_operation_id"),
                 rs.getString("flag_url")
 
@@ -110,29 +115,22 @@ public class MySQLComradsDao implements Comrads {
         return comrads;
     }
 
-    private Comrad extractComrad(ResultSet rs) throws SQLException {
+    private Comrad extractComrad(ResultSet rs,ResultSet rs2) throws SQLException {
         return new Comrad(
                 rs.getLong("id"),
                 rs.getString("name"),
                 rs.getString("description"),
                 rs.getString("wiki_link"),
                 rs.getLong("user_id"),
-                createPartiesFromResults(rs)
-
+                createPartiesFromResults(rs2)
         );
     }
 
-    private List<Comrad> createComradsFromResults(ResultSet rs) throws SQLException {
-//        List<Comrad> comrads = new ArrayList<>();
-//        while (rs.next()) {
-//            comrads.add(extractComrad(rs));
-//        }
-//        return comrads;
-        List<Comrad> delete = new ArrayList<>();
-        delete.add(new Comrad("Daddy Stalin"));
-        delete.add(new Comrad("Daddy Mao"));
-        delete.add(new Comrad("Daddy Castro"));
-        delete.add(new Comrad("Daddy Lenin"));
-        return delete;
+    private List<Comrad> createComradsFromResults(ResultSet rs,ResultSet rs2) throws SQLException {
+        List<Comrad> comrads = new ArrayList<>();
+        while (rs.next()) {
+            comrads.add(extractComrad(rs,rs2));
+        }
+        return comrads;
     }
 }
