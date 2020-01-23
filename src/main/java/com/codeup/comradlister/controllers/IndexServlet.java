@@ -12,10 +12,10 @@ import java.io.IOException;
 @WebServlet(name = "controllers.IndexServlet", urlPatterns = "/")
 public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("comrades", DaoFactory.getComradsDao().all());
-        request.setAttribute("users", DaoFactory.getUsersDao().all());
-        request.setAttribute("countries",DaoFactory.getCountriesDao());
-        request.setAttribute("parties",DaoFactory.getPartiesDao());
+        request.getSession().setAttribute("comrades", DaoFactory.getComradsDao().all());
+        request.getSession().setAttribute("users", DaoFactory.getUsersDao().all());
+        request.getSession().setAttribute("countries",DaoFactory.getCountriesDao().all());
+        request.getSession().setAttribute("parties",DaoFactory.getPartiesDao().all());
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

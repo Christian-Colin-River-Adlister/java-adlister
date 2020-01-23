@@ -1,5 +1,7 @@
 package com.codeup.comradlister.controllers;
 
+import com.codeup.comradlister.dao.DaoFactory;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +16,7 @@ public class ViewProfileServlet extends HttpServlet {
             response.sendRedirect("/login");
             return;
         }
+        request.getSession().setAttribute("parties", DaoFactory.getPartiesDao().all());
         request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
     }
 }

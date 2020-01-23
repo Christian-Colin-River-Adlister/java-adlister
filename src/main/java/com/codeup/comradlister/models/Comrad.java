@@ -14,8 +14,8 @@ public class Comrad {
     public Comrad(Long id, String name, String description,String wiki_link, Long user_id) {
         this.id = id;
         this.name = name;
-        this.wiki_link = wiki_link;
         this.description = description;
+        this.wiki_link = wiki_link;
         this.user_id = user_id;
     }
 
