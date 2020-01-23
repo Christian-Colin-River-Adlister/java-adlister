@@ -41,6 +41,7 @@
             name: "${comrade.getName()}",
             description: "${comrade.getDescription()}",
             userId: "${comrade.getUser_id()}",
+            wiki: "${comrade.getWikiLink()}",
             parties: [
                 <c:forEach var="party" items="${comrade.getParties()}">
                 {
@@ -56,38 +57,44 @@
         },
         </c:forEach>
     ];
-    // const cardArea = document.getElementById("comrades-card-area");
     const cardArea = document.getElementById("comrades-card-area");
     const searchTerm = document.getElementById('searchTerm');
     var keys = Object.keys(comrades);
     if (searchTerm.value.trim() === "") {
         for (let i = 0; i < keys.length; i++) {
-                cardArea.innerHTML += '<div class="card float-left border-dark-shade" style="width: 40%;">\n' +
+            let newCard = "";
+                newCard += '<div class="card float-left border-dark-shade">\n' + //style="width: 40%;"
                     '                    <div class="card-body bg-soft-white ">\n' +
-                    '                        <h4 class="card-title text-center ">' + comrades[i].name + '</h4>\n' +
+                    '                        <h4 class="card-title text-center "><a href="' + comrades[i].wiki + '">' + comrades[i].name + '</h4>\n' +
                     '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + comrades[i].description + '</h6>\n';
                 for(let i2 = 0; i2 < comrades[i].parties.length; i2++){
-                    cardArea.innerHTML += "<p class=\"card-text text-center\">" + comrades[i].parties[i2].dateFounded + ' - ' + comrades[i].parties[i2].dateDissolved + "</p>\n";
-                    cardArea.innerHTML += "<img src='"+ comrades[i].parties[i2].flagUrl +"' alt='icon' class=''>";
-                    cardArea.innerHTML += '<p class="card-text text-center text-muted">' + comrades[i].parties[i2].name + '</p>';
+                    newCard += "<p class=\"card-text text-center\">" + comrades[i].parties[i2].dateFounded + ' - ' + comrades[i].parties[i2].dateDissolved + "</p>\n";
+                    newCard += "<img src='"+ comrades[i].parties[i2].flagUrl +"' alt='icon' class=''>";
+                    newCard += '<p class="card-text text-center text-muted">' + comrades[i].parties[i2].name + '</p>';
                 }
-                cardArea.innerHTML += '</div></div>';
+            newCard += '</div></div>';
+            cardArea.innerHTML += newCard;
         }
     }
+
+    //
+
     searchTerm.addEventListener("input", function () {
         cardArea.innerHTML = '';
         for (let i = 0; i < keys.length; i++) {
             if (comrades[i].name.toLowerCase().includes(searchTerm.value.toLowerCase().trim()) || searchInParties(searchTerm.value, comrades[i].parties)) {
-                cardArea.innerHTML += '<div class="card float-left mx-3 mb-2  border-dark-shade">\n' + //style="width: 40%;"
-                    '                    <div class="card-body bg-soft-white ">\n' +
+                let newCard = "";
+                newCard += '<div class="card float-left border-dark-shade">\n';
+                    newCard += '                    <div class="card-body bg-soft-white ">\n' +
                     '                        <h4 class="card-title text-center ">' + comrades[i].name + '</h4>\n' +
-                    '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + comrades[i].description + '</h6>\n' +
-                    '                        <p class="card-text text-center">' + comrades[i].dateFounded + ' - ' + comrades[i].dateDissolved + '</p>\n';
-                for(let i2 = 0; i2 < comrades[i].parties.length; i2++){
-                    cardArea.innerHTML += "<img src='"+ comrades[i].parties[i2].flagUrl +"' alt='icon' class=''>";
-                    cardArea.innerHTML += '<p class="card-text text-center text-muted">' + comrades[i].parties[i2].name + '</p>';
+                    '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + comrades[i].description + '</h6>\n';
+                for (let i2 = 0; i2 < comrades[i].parties.length; i2++) {
+                    newCard += "<p class=\"card-text text-center\">" + comrades[i].parties[i2].dateFounded + ' - ' + comrades[i].parties[i2].dateDissolved + "</p>\n";
+                    newCard += "<img src='" + comrades[i].parties[i2].flagUrl + "' alt='icon' class=''>";
+                    newCard += '<p class="card-text text-center text-muted">' + comrades[i].parties[i2].name + '</p>';
                 }
-                cardArea.innerHTML += '</div></div>';
+                newCard += '</div></div>';
+                cardArea.innerHTML += newCard;
             }
         }
     });
