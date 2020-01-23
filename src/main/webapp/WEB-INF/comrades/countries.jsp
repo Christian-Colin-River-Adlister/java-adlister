@@ -12,8 +12,8 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Viewing All The countries"/>
-    </jsp:include>
+    <jsp:param name="title" value="Viewing All The countries"/>
+</jsp:include>
 </head>
 <body>
 <h1>Here are all the Countries affected by wonderful communism comrade!</h1>
