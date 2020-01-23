@@ -53,8 +53,8 @@ public class MySQLComradsDao implements Comrads {
             PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, comrad.getName());
             stmt.setString(2, comrad.getDescription());
-            stmt.setString(3, comrad.getWiki_link());
-            stmt.setLong(4, comrad.getUser_id());
+            stmt.setString(3, comrad.getWikiLink());
+            stmt.setLong(4, comrad.getUserId());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
@@ -85,7 +85,7 @@ public class MySQLComradsDao implements Comrads {
     public List<Party> getComradeParties(Comrad comrad) {
         PreparedStatement stmt = null;
         try {
-            Long user_id = comrad.getUser_id();
+            Long user_id = comrad.getUserId();
             stmt = connection.prepareStatement("SELECT * FROM comrad_lister.comrades_parties WHERE comrade_id = "+ user_id +"");
             ResultSet rs = stmt.executeQuery();
             return createPartiesFromResults(rs);
