@@ -1,0 +1,50 @@
+body {
+    background: #9B8D92;
+}
+
+#welcome {
+    display: flex;
+    justify-content: center;
+
+
+}
+
+#flag {
+    position: fixed;
+    top: 250px;
+    left: 100px;
+}
+
+a {
+    color: #2B2329;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+
+}
+
+#welcome {
+    position: fixed;
+    font-size: 75px;
+    top: 100px;
+    left: 250px;
+
+}
+
+#login {
+    position: fixed;
+    top: 300px;
+}
+
+#register {
+    position: fixed;
+    top: 400px;
+}
+
+#comrades {
+    position: fixed;
+    top: 500px;
+}
+
