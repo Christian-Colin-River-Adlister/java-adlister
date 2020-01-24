@@ -87,6 +87,11 @@ public class Party {
         return countryID;
     }
 
+    public String getCountry() {
+        return DaoFactory.getCountriesDao().findById(countryID).getName();
+    }
+
+
     public void setCountryID(Long countryID) {
         this.countryID = countryID;
     }
