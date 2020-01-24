@@ -30,9 +30,7 @@ public class MySQLComradsDao implements Comrads {
     @Override
     public Comrad findByName(String name) {
         PreparedStatement s = null;
-        Config config = new Config();
-        MySQLComradsDao mySQLComradsDao = new MySQLComradsDao(config);
-        List<Comrad> all = mySQLComradsDao.all();
+        List<Comrad> all = DaoFactory.getComradsDao().all();
         Comrad found = null;
         for(Comrad comrad : all){
             if(comrad.getName().equals(name)){
