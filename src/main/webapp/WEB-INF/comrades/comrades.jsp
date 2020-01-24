@@ -69,7 +69,7 @@
                 '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + comrades[i].description + '</h6>\n';
             for (let i2 = 0; i2 < comrades[i].parties.length; i2++) {
                 newCard += "<p class=\"card-text text-center\">" + comrades[i].parties[i2].dateFounded + ' - ' + comrades[i].parties[i2].dateDissolved + "</p>\n";
-                newCard += "<img src='" + comrades[i].parties[i2].flagUrl + "' alt='icon' class=''>";
+                newCard += "<img <img style=\"width:250px!important;height:150px!important;\" src='" + comrades[i].parties[i2].flagUrl + "' alt='icon' class=''>";
                 newCard += '<p class="card-text text-center text-muted">' + comrades[i].parties[i2].name + '</p>';
             }
             newCard += '</div></div>';
@@ -88,7 +88,7 @@
                     '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + comrades[i].description + '</h6>\n';
                 for (let i2 = 0; i2 < comrades[i].parties.length; i2++) {
                     newCard += "<p class=\"card-text text-center\">" + comrades[i].parties[i2].dateFounded + ' - ' + comrades[i].parties[i2].dateDissolved + "</p>\n";
-                    newCard += "<img src='" + comrades[i].parties[i2].flagUrl + "' alt='icon' class=''>";
+                    newCard += "<img style=\"width:250px!important;height:150px!important;\" src='" + comrades[i].parties[i2].flagUrl + "' alt='icon' class='w-100'>";
                     newCard += '<p class="card-text text-center text-muted">' + comrades[i].parties[i2].name + '</p>';
                 }
                 newCard += '</div></div>';
