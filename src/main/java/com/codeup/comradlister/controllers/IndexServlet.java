@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "controllers.IndexServlet", urlPatterns = "/")
+@WebServlet(name = "controllers.IndexServlet", urlPatterns = "/index")
 public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().setAttribute("comrades", DaoFactory.getComradsDao().all());
