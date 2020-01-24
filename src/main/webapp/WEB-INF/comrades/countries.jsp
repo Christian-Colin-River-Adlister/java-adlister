@@ -16,6 +16,7 @@
 </jsp:include>
 </head>
 <body>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" />
 <h1>Here are all the Countries that at one point had a communist party.</h1>
 
 <div class="card border-0 w-100" style="width: 18rem;">
