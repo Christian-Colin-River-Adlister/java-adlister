@@ -14,11 +14,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "controllers.ComradUpdateServlet", urlPatterns = "/comrades/update")
-public class ComradUpdateServlet extends HttpServlet {
+@WebServlet(name = "controllers.PartyUpdateServlet", urlPatterns = "/parties/update")
+public class PartyUpdateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("signed_in") == null) {
             response.sendRedirect("/login");
@@ -26,23 +27,9 @@ public class ComradUpdateServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        User user = (User) request.getSession().getAttribute("signed_in");
-        List<Party> comradeParties = new ArrayList<>();
-        String parties = request.getParameter("partyArea");
-        String[] partiesSplit = parties.split(",");
-        for (String s : partiesSplit) {
-            Party found = DaoFactory.getPartiesDao().findByName(s);
-            if(found != null){
-                comradeParties.add(found);
-            }
-        }
-
-        Comrad comrad = new Comrad((String) request.getAttribute(""), (String) request.getAttribute(""), (String) request.getAttribute(""), (Long) request.getAttribute(""));
-
-        DaoFactory.getComradsDao().insert(comrad);
-        for (Party party : comradeParties) {
-            DaoFactory.getComradsDao().insertComradeParty(comrad, party);
-        }
-        response.sendRedirect("/comrades");
+//        User user = (User) request.getSession().getAttribute("signed_in");
+        Party updated = new Party((String) request.getAttribute("name"), (String) request.getAttribute("description"), (Date) request.getAttribute("date_founded"), (Date) request.getAttribute("date_dissolved"), (Long) request.getAttribute("country_id"));
+        DaoFactory.getPartiesDao().updade(updated);
+        response.sendRedirect("/parties");
     }
 }

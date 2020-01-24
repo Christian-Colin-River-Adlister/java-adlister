@@ -34,6 +34,15 @@ public class Party {
         this.flagUrl = flagUrl;
     }
 
+    public Party(String name, String description, Date dateFounded, Date dateDissolved, Long countryID) {
+        this.name = name;
+        this.description = description;
+        this.dateFounded = dateFounded;
+        this.dateDissolved = dateDissolved;
+        this.countryID = countryID;
+//        this.flagUrl = flagUrl;
+    }
+
 //    public Party(String test){
 //        this.name = test;
 //        this.description = "test party description";
