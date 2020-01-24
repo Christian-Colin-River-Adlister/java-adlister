@@ -26,7 +26,16 @@ public class MySQLCountriesDao implements Countries {
 
     @Override
     public Country findByName(String name) {
-        return null;
+        Config config = new Config();
+        MySQLCountriesDao mySQLCountriesDao = new MySQLCountriesDao(config);
+        List<Country> all = mySQLCountriesDao.all();
+        Country found = null;
+        for(Country country : all){
+            if(country.getName().equals(name)){
+                found = country;
+            }
+        }
+        return found;
     }
 
     @Override

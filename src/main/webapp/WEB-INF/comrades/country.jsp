@@ -12,10 +12,10 @@
 
 </head>
 <body>
-
+<h1>Hello Country Page</h1>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-<div class="countries" id="Individual-country">
+<div class="countries" id="country-card">
 
 </div>
 
@@ -23,26 +23,27 @@
 <jsp:include page="/WEB-INF/partials/footer.jsp"/>
 
 <script>
-    var countries = [
-        <c:forEach items="${countries}" var="country">
+    const country =
+<%--        <c:forEach items="${country}" var="country">--%>
         {
             id: "${country.id}",
             name: "${country.getName()}",
             continent: "${country.getContinent()}",
             level: "${country.getLevel_of_comradery()}"
-        },
-        </c:forEach>
-    ];
-    const card = document.getElementsByID("country-card");
-    for (let i = 1; i < keys.length; i++) {
+        }
+<%--        </c:forEach>--%>
+    ;
+    const cardArea = document.getElementById("country-card");
+    // const keys = Object.keys(countries);
+    // for (let i = 1; i <= keys.length; i++) {
         let newCard = "";
         newCard += '<div class="card float-left border-dark-shade">\n' +
             '                    <div class="card-body bg-soft-white ">\n' +
-            '                        <h4 class="card-title text-center "><form action="/country" method="POST"> <input type="hidden" name="name" value="' + countries[i].name + '"> <button type="submit">' + countries[i].name + '</button></form></h4>\n' +
-            '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + countries[i].description + '</h6>\n';
+            '                        <h4 class="card-title text-center ">' + country.name + '</h4>\n' +
+            '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + country.description + '</h6>\n';
         newCard += '</div></div>';
         cardArea.innerHTML += newCard;
-    }
+    // }
 
 </script>
 
