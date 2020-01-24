@@ -29,7 +29,7 @@
                     description: "${party.getDescription()}",
                     dateFounded: "${party.getDateFounded()}",
                     dateDissolved: "${party.getDateDissolved()}",
-                    countryID: "${party.getCountryID()}",
+                    country: "${party.getCountry(party.getCountryId()).getName()}",
                     flagUrl: "${party.getFlagUrl()}"
                 },
                 </c:forEach>
@@ -46,8 +46,8 @@
         '                        <h6 class="card-subtitle mb-2 text-muted text-center"><a target="_blank" href="' + comrade.wiki + '">See ' + comrade.name + '\'s wiki page</a></h6>\n';
     for(let i = 0; i < comrade.parties.length; i++){
         newCard += "<p class=\"card-text text-center\">" + comrade.parties[i].dateFounded + ' - ' + comrade.parties[i].dateDissolved + "</p>\n";
+        newCard += '<h4 class="card-title text-center "><form action="/party" method="POST"> <input type="hidden" name="name" value="' + comrade.parties[i].name + '"> <button type="submit">' + comrade.parties[i].name + '</button></form>' + '</h4>\n';
         newCard += "<img src='"+ comrade.parties[i].flagUrl +"' alt='icon' class=''>";
-        newCard += '<p class="card-text text-center text-muted">' + comrade.parties[i].name + '</p>';
     }
     newCard += '</div></div>';
     cardArea.innerHTML += newCard;

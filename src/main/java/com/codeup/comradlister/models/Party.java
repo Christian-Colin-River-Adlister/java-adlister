@@ -1,5 +1,7 @@
 package com.codeup.comradlister.models;
 
+import com.codeup.comradlister.dao.DaoFactory;
+
 import java.sql.Date;
 
 public class Party {
@@ -96,4 +98,5 @@ public class Party {
     public void setFlagUrl(String flagUrl) {
         this.flagUrl = flagUrl;
     }
+
 }

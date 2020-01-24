@@ -1,5 +1,9 @@
 package com.codeup.comradlister.models;
 
+import com.codeup.comradlister.dao.DaoFactory;
+
+import java.util.List;
+
 public class Country {
     private Long id;
     private String name;
@@ -50,4 +54,6 @@ public class Country {
     public void setLevel_of_comradery(int level_of_comradery) {
         this.level_of_comradery = level_of_comradery;
     }
+
+
 }

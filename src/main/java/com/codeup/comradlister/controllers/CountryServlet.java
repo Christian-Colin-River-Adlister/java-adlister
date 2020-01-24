@@ -1,6 +1,7 @@
 package com.codeup.comradlister.controllers;
 
 import com.codeup.comradlister.dao.DaoFactory;
+import com.codeup.comradlister.models.Country;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +15,9 @@ public class CountryServlet extends HttpServlet {
 //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //    }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("country", DaoFactory.getCountriesDao().findByName(request.getParameter("name")));
+        Country country = DaoFactory.getCountriesDao().findByName(request.getParameter("name"));
+        request.setAttribute("country", country);
+        request.setAttribute("parties",DaoFactory.getCountriesDao().getPartiesFromId(country.getId()));
         request.getRequestDispatcher("/WEB-INF/comrades/country.jsp").forward(request, response);
     }
 }
