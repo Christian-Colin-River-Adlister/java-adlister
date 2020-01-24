@@ -12,7 +12,7 @@ import java.io.IOException;
 @WebServlet(name = "controllers.ComradServlet", urlPatterns = "/comrade")
 public class ComradServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("comrade", DaoFactory.getComradsDao().findByName("Stalin"));
+//        request.setAttribute("comrade", DaoFactory.getComradsDao().findByName("Stalin"));
         request.setAttribute("users", DaoFactory.getUsersDao().all());
         request.getRequestDispatcher("/WEB-INF/comrades/comrades.jsp").forward(request, response);
     }

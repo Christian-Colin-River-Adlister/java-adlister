@@ -2,6 +2,7 @@ package com.codeup.comradlister.dao;
 
 import com.codeup.comradlister.Config.Config;
 import com.codeup.comradlister.models.Country;
+import com.codeup.comradlister.models.Party;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
@@ -38,6 +39,19 @@ public class MySQLCountriesDao implements Countries {
         return found;
     }
 
+    public Country findById(Long id) {
+        Config config = new Config();
+        MySQLCountriesDao mySQLCountriesDao = new MySQLCountriesDao(config);
+        List<Country> all = mySQLCountriesDao.all();
+        Country found = null;
+        for(Country country : all){
+            if(country.getId()== id){
+                found = country;
+            }
+        }
+        return found;
+    }
+
     @Override
     public List<Country> all() {
         PreparedStatement stmt = null;
@@ -48,6 +62,38 @@ public class MySQLCountriesDao implements Countries {
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all countries.", e);
         }
+    }
+
+    public List<Party> getPartiesFromId(Long id){
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM comrad_lister.parties WHERE country_of_operation_id = ? ");
+            stmt.setLong(1,id);
+            ResultSet rs = stmt.executeQuery();
+            return createPartiesFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all parties.", e);
+        }
+    }
+
+    private List<Party> createPartiesFromResults(ResultSet rs) throws SQLException {
+        List<Party> list = new ArrayList<>();
+        while (rs.next()) {
+            list.add(extractParty(rs));
+        }
+        return list;
+    }
+
+    private Party extractParty(ResultSet rs) throws SQLException {
+        return new Party(
+                rs.getLong("id"),
+                rs.getString("name"),
+                rs.getString("description"),
+                rs.getDate("date_founded"),
+                rs.getDate("date_dissolved"),
+                rs.getLong("country_of_operation_id"),
+                rs.getString("flag_url")
+        );
     }
 
 

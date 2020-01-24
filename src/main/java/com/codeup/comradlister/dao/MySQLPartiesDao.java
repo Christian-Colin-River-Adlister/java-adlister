@@ -1,6 +1,8 @@
 package com.codeup.comradlister.dao;
 
 import com.codeup.comradlister.Config.Config;
+import com.codeup.comradlister.models.Comrad;
+import com.codeup.comradlister.models.Country;
 import com.codeup.comradlister.models.Party;
 import com.codeup.comradlister.models.User;
 import com.mysql.cj.jdbc.Driver;
@@ -29,9 +31,7 @@ public class MySQLPartiesDao implements Parties {
 
     @Override
     public Party findByName(String name) {
-        Config config = new Config();
-        MySQLPartiesDao partiesDao = new MySQLPartiesDao(config);
-        List<Party> allParties = partiesDao.all();
+        List<Party> allParties = DaoFactory.getPartiesDao().all();
         for(Party party : allParties){
             if (party.getName().equals(name)){
                 return party;
@@ -93,19 +93,53 @@ public class MySQLPartiesDao implements Parties {
     }
 
     public static void main(String[] args) {
-        Config config = new Config();
-        MySQLPartiesDao partiesDao = new MySQLPartiesDao(config);
-        Party found = partiesDao.findByName("Communist Party of the Soviet Union (CPSU)");
+        Party found = DaoFactory.getPartiesDao().findByName("Communist Party of the Soviet Union (CPSU)");
         System.out.println(found.getName());
         String test = "Communist Party of the Soviet Union (CPSU),";
         String[] split = test.split(",");
-        found = partiesDao.findByName(split[0]);
+        found = DaoFactory.getPartiesDao().findByName(split[0]);
         System.out.println(found.getName());
         for (String s : split) {
-            found = partiesDao.findByName(s);
+            found = DaoFactory.getPartiesDao().findByName(s);
             if(found != null){
                 System.out.println(found.getId());;
             }
         }
+    }
+
+
+    @Override
+    public List<Comrad> getPartyComrads(Long id) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM comrad_lister.comrades JOIN comrad_lister.comrades_parties WHERE comrades_parties.parties_id = ? AND comrades_parties.comrade_id = comrades.id");
+            stmt.setLong(1,id);
+            ResultSet rs = stmt.executeQuery();
+            return createComradesFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all comrades.", e);
+        }
+    }
+
+    private List<Comrad> createComradesFromResults(ResultSet rs) throws SQLException {
+        List<Comrad> comrads = new ArrayList<>();
+        while (rs.next()) {
+            comrads.add(extractComrade(rs));
+        }
+        return comrads;
+    }
+
+    private Comrad extractComrade(ResultSet rs) throws SQLException {
+        return new Comrad(
+                rs.getLong("id"),
+                rs.getString("name"),
+                rs.getString("description"),
+                rs.getString("wiki_link"),
+                rs.getLong("user_id")
+        );
+    }
+
+    public Country getCountryFromId(Long id){
+        return DaoFactory.getCountriesDao().findById(id);
     }
 }

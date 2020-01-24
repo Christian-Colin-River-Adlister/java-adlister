@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS parties
     date_founded            DATE         NOT NULL,
     date_dissolved          DATE         NOT NULL,
     country_of_operation_id INT UNSIGNED,
-    flag_url                VARCHAR(255) NOT NULL DEFAULT 'webapp/images/red_flag.png',
+    flag_url                VARCHAR(255) NOT NULL DEFAULT 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6GyZatX6eM0wvRzxSz2tqOyyKia8HuIRSf5RRTbmnAcHB9gr9&s',
     PRIMARY KEY (id)
 );
 

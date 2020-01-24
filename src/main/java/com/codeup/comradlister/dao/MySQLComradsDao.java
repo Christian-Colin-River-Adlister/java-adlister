@@ -2,6 +2,7 @@ package com.codeup.comradlister.dao;
 
 import com.codeup.comradlister.Config.Config;
 import com.codeup.comradlister.models.Comrad;
+import com.codeup.comradlister.models.Country;
 import com.codeup.comradlister.models.Party;
 
 import com.mysql.cj.jdbc.Driver;
@@ -93,7 +94,7 @@ public class MySQLComradsDao implements Comrads {
     public List<Party> getComradeParties(Long id) {
         PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement("SELECT * FROM comrad_lister.parties JOIN comrad_lister.comrades_parties WHERE comrades_parties.comrade_id = ?");
+            stmt = connection.prepareStatement("SELECT * FROM comrad_lister.parties JOIN comrad_lister.comrades_parties WHERE comrades_parties.comrade_id = ? AND comrades_parties.parties_id = parties.id");
             stmt.setLong(1,id);
             ResultSet rs = stmt.executeQuery();
             return createPartiesFromResults(rs);
@@ -116,11 +117,11 @@ public class MySQLComradsDao implements Comrads {
     }
 
     private List<Party> createPartiesFromResults(ResultSet rs) throws SQLException {
-        List<Party> comrads = new ArrayList<>();
+        List<Party> parties = new ArrayList<>();
         while (rs.next()) {
-            comrads.add(extractParty(rs));
+            parties.add(extractParty(rs));
         }
-        return comrads;
+        return parties;
     }
 
     private Comrad extractComrad(ResultSet rs) throws SQLException {
@@ -142,6 +143,7 @@ public class MySQLComradsDao implements Comrads {
     }
 
     public static void main(String[] args) {
-
+        Country country = DaoFactory.getCountriesDao().findByName("China");
+        System.out.println(DaoFactory.getCountriesDao().getPartiesFromId(country.getId()).get(0).getName());
     }
 }
