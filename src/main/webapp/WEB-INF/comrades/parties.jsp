@@ -28,7 +28,7 @@
             description: "${party.getDescription()}",
             dateFounded: "${party.getDateFounded()}",
             dateDissolved: "${party.getDateDissolved()}",
-            country: "${party.getCountry().getName()}",
+            country: "${party.getCountry()}",
             flagUrl: "${party.getFlagUrl()}"
         },
         </c:forEach>

@@ -1,6 +1,6 @@
 USE comrad_lister;
 
-INSERT INTO users(username, email, password, bio, is_Supreme_Leader) VALUES ('Daddy_Stalin','Supreme_Leader6969@yahoo.com','$2a$12$wNj96VnRk5nfuCIMVVLaeO4K9CrkD89q7H44gl3X04CRTV/j/Tg3a','I am big boy Stalin, and I am the admin, and I am not gonna tolerate no capitalism','Y');
+INSERT INTO users(username, email, password, bio, is_Supreme_Leader) VALUES ('Daddy_Stalin','Supreme_Leader9001@yahoo.com','$2a$12$wNj96VnRk5nfuCIMVVLaeO4K9CrkD89q7H44gl3X04CRTV/j/Tg3a','I am big boy Stalin, and I am the admin, and I am not gonna tolerate no capitalism','Y');
 
 INSERT INTO countries(name, continent, level_of_comradery) VALUES ('Grenada','South America', 7);
 INSERT INTO countries(name, continent, level_of_comradery) VALUES ('Zanzibar','Africa', 4);
