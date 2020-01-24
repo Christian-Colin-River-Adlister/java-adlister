@@ -71,6 +71,37 @@ public class MySQLComradsDao implements Comrads {
         }
     }
 
+    @Override
+    public Long update(Comrad comrad) {
+        String query = "UPDATE comrad_lister.comrades SET name = ?, description = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, comrad.getName());
+            stmt.setString(2, comrad.getDescription());
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return rs.getLong(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error changing comrad information", e);
+        }
+    }
+
+    @Override
+    public Long delete(String name) {
+        String query = "DELETE FROM comrad_lister.comrades WHERE comrades.name = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, name);
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return rs.getLong(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error deleting comrade", e);
+        }
+    }
+
     public Long insertComradeParty(Comrad comrad, Party party){
         try {
             String insertQuery = "INSERT INTO comrad_lister.comrades_parties(comrade_id, parties_id) VALUES (?, ?)";
@@ -101,6 +132,18 @@ public class MySQLComradsDao implements Comrads {
         }
     }
 
+    public List<Party> updateComradeParties(Long id) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM comrad_lister.parties JOIN comrad_lister.comrades_parties WHERE comrades_parties.comrade_id = ? AND comrades_parties.parties_id = parties.id");
+            stmt.setLong(1,id);
+            ResultSet rs = stmt.executeQuery();
+            return createPartiesFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving all parties.", e);
+        }
+    }
+
     private Party extractParty(ResultSet rs) throws SQLException {
         return new Party(
                 rs.getLong("id"),
@@ -110,7 +153,6 @@ public class MySQLComradsDao implements Comrads {
                 rs.getDate("date_dissolved"),
                 rs.getLong("country_of_operation_id"),
                 rs.getString("flag_url")
-
         );
     }
 

@@ -92,6 +92,39 @@ public class MySQLPartiesDao implements Parties {
         }
     }
 
+    public Long updade(Party party) {
+        String query = "UPDATE comrad_lister.parties SET name = ?, description = ?, date_founded = ?, date_dissolved = ?, country_of_operation_id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, party.getName());
+            stmt.setString(2, party.getDescription());
+            stmt.setDate(3, party.getDateFounded());
+            stmt.setDate(4, party.getDateDissolved());
+            stmt.setLong(5, party.getCountryID());
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return rs.getLong(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error changing party information", e);
+        }
+    }
+
+    @Override
+    public Long delete(String name) {
+        String query = "DELETE FROM comrad_lister.parties WHERE parties.name = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, name);
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return rs.getLong(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error deleting party", e);
+        }
+    }
+
     public static void main(String[] args) {
         Party found = DaoFactory.getPartiesDao().findByName("Communist Party of the Soviet Union (CPSU)");
         System.out.println(found.getName());

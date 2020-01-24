@@ -11,4 +11,6 @@ public interface Comrads {
     Long insert(Comrad comrad);
     List<Party> getComradeParties(Long id);
     Long insertComradeParty(Comrad comrad, Party party);
+    public Long update(Comrad comrad);
+    public Long delete(String name);
 }

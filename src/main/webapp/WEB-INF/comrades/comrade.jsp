@@ -47,7 +47,7 @@
     for(let i = 0; i < comrade.parties.length; i++){
         newCard += '<h4 class="card-title text-center "><form action="/party" method="POST"> <input type="hidden" name="name" value="' + comrade.parties[i].name + '"> <button type="submit">' + comrade.parties[i].name + '</button></form>' + '</h4>\n';
         newCard += "<p class=\"card-text text-center\">" + comrade.parties[i].dateFounded + ' - ' + comrade.parties[i].dateDissolved + "</p>\n";
-        newCard += "<p class=\"card-text text-center\">Located in: " + comrade.parties[i].country + "</p>\n";
+        newCard += "<p class=\"card-text text-center\">Located in: " + "<form action='/country' method='POST'><button type='submit' value='"+ comrade.parties[i].country +"'>" + comrade.parties[i].country + "</button></p></form>";
         newCard += "<img src='"+ comrade.parties[i].flagUrl +"' alt='icon' class=''>";
     }
     newCard += '</div></div>';

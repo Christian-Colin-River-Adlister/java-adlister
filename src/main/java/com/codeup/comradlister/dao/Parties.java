@@ -10,4 +10,6 @@ public interface Parties {
     public Long insert(Party party);
     public Party findByName(String name);
     List<Comrad> getPartyComrads(Long id);
+    public Long updade(Party party);
+    public Long delete(String name);
 }
