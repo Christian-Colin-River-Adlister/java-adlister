@@ -16,7 +16,7 @@
 </jsp:include>
 </head>
 <body>
-<h1>Here are all the Countries affected by wonderful communism comrade!</h1>
+<h1>Here are all the Countries that at one point had a communist party.</h1>
 
 <div class="card border-0 w-100" style="width: 18rem;">
     <div class="input-group border-0">
@@ -72,7 +72,5 @@
         }
     });
 </script>
-
-
 </body>
 </html>
