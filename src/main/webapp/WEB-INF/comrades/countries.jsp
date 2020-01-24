@@ -14,6 +14,7 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
     <jsp:param name="title" value="Viewing All The countries"/>
 </jsp:include>
+    <link rel="stylesheet" type="text/css" href="../../css/countries.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
