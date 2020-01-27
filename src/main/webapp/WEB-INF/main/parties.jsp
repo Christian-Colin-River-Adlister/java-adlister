@@ -26,8 +26,7 @@
         {
             name: "${party.getName()}",
             description: "${party.getDescription()}",
-            dateFounded: "${party.getDateFounded()}",
-            dateDissolved: "${party.getDateDissolved()}",
+            wikiLink: "${party.getWiki_link()}",
             country: "${party.getCountry()}",
             flagUrl: "${party.getFlagUrl()}"
         },
@@ -44,7 +43,9 @@
                 '                    <div class="card-body bg-soft-white ">\n' +
                 '                        <h4 class="card-title text-center "><form action="/party" method="POST"> <input type="hidden" name="name" value="' + parties[i].name + '"> <button type="submit">' + parties[i].name + '</button></form></h4>' +
                 '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + parties[i].description + '</h6>\n' +
-                '                        <h6 class="card-subtitle mb-2 text-muted text-center">Located in ' + parties[i].country + '</h6>\n';
+                '                        <h6 class="card-subtitle mb-2 text-muted text-center">Located in ' + parties[i].country + '</h6>\n' +
+                '                        <img class="mx-auto" style=\'width: 300px!important;height: 150px!important;\' src="' + parties[i].flagUrl + '" alt="">';
+
 
             newCard += '</div></div>';
             cardArea.innerHTML += newCard;
@@ -60,7 +61,8 @@
                 newCard += '<div class="card float-left border-dark-shade">\n' + //style="width: 40%;"
                     '                    <div class="card-body bg-soft-white ">\n' +
                     '                        <h4 class="card-title text-center "><form action="/party" method="POST"> <input type="hidden" name="name" value="' + parties[i].name + '"> <button type="submit">' + parties[i].name + '</button></form></h4>' +
-                    '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + parties[i].description + '</h6>\n';
+                    '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + parties[i].description + '</h6>\n' +
+                    '                        <img class="mx-auto" style=\'width: 300px!important;height: 150px!important;\' src="' + parties[i].flagUrl + '" alt="">';
                 newCard += '</div></div>';
                 cardArea.innerHTML += newCard;
             }

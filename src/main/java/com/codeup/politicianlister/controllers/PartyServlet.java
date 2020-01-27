@@ -18,7 +18,7 @@ public class PartyServlet extends HttpServlet {
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Party party = DaoFactory.getPartiesDao().findByName(request.getParameter("name"));
-        List<Politician> politicians = DaoFactory.getPartiesDao().getPartyComrads(party.getId());
+        List<Politician> politicians = DaoFactory.getPartiesDao().getPartyPoliticians(party.getId());
         request.setAttribute("party", party);
         request.setAttribute("politicians", politicians);
         request.getRequestDispatcher("/WEB-INF/main/party.jsp").forward(request, response);

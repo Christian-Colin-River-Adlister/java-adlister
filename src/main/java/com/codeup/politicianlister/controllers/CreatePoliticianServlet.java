@@ -46,6 +46,7 @@ public class CreatePoliticianServlet extends HttpServlet {
                 request.getParameter("name"),
                 request.getParameter("description"),
                 request.getParameter("wiki_link"),
+                request.getParameter("head_shot_url"),
                 user.getId()
         );
         DaoFactory.getPoliticiansDao().insert(politician);

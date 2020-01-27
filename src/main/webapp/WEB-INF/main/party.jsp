@@ -17,8 +17,7 @@
     const party = {
             name: "${party.getName()}",
             description: "${party.getDescription()}",
-            dateFounded: "${party.getDateFounded()}",
-            dateDissolved: "${party.getDateDissolved()}",
+            wikiLink : "${party.getWiki_link()}",
             countryID: "${party.getCountryID()}",
             flagUrl: "${party.getFlagUrl()}"
         };
@@ -28,7 +27,8 @@
             name: "${politician.getName()}",
             description: "${politician.getDescription()}",
             userId: "${politician.getUserId()}",
-            wikiLink: "${politician.getWikiLink()}"
+            wikiLink: "${politician.getWikiLink()}",
+            headShot: "${politician.getHead_shot_url()}"
         },
         </c:forEach>
     ];
@@ -40,7 +40,6 @@
         '                    <div class="card-body bg-soft-white ">' +
         '                        <h4 class="card-title text-center ">' + party.name + '</h4>' +
         '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + party.description + '</h6>\n' +
-        '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + party.dateFounded + ' - ' + party.dateDissolved + '</h6>' +
         '                        <img class="mx-auto" style=\'width: 300px!important;height: 150px!important;\' src="'+ party.flagUrl +'" alt="">' +
         '                        <h4 class="card-title text-center ">Associated Members</h4>';
     for(let i = 0; i < politicians.length; i++){

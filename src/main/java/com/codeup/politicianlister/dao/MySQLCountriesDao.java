@@ -89,8 +89,7 @@ public class MySQLCountriesDao implements Countries {
                 rs.getLong("id"),
                 rs.getString("name"),
                 rs.getString("description"),
-                rs.getDate("date_founded"),
-                rs.getDate("date_dissolved"),
+                rs.getString("wiki_link"),
                 rs.getLong("country_of_operation_id"),
                 rs.getString("flag_url")
         );
@@ -100,10 +99,11 @@ public class MySQLCountriesDao implements Countries {
     @Override
     public Long insert(Country country) {
         try {
-            String insertQuery = "INSERT INTO politic_lister.countries(name, continent) VALUES (?, ?)";
+            String insertQuery = "INSERT INTO politic_lister.countries(name, continent,wiki_link) VALUES (?, ?,?)";
             PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, country.getName());
             stmt.setString(2, country.getContinent());
+            stmt.setString(3,country.getWiki_link());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
@@ -117,7 +117,8 @@ public class MySQLCountriesDao implements Countries {
         return new Country(
                 rs.getLong("id"),
                 rs.getString("name"),
-                rs.getString("continent")
+                rs.getString("continent"),
+                rs.getString("wiki_link")
         );
     }
 

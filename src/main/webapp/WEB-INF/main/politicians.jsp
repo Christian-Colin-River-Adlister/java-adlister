@@ -42,13 +42,13 @@
             description: "${politician.getDescription()}",
             userId: "${politician.getUserId()}",
             wiki: "${politician.getWikiLink()}",
+            headShot: "${politician.getHead_shot_url()}",
             parties: [
                 <c:forEach var="party" items="${politician.getParties()}">
                 {
                     name: "${party.getName()}",
                     description: "${party.getDescription()}",
-                    dateFounded: "${party.getDateFounded()}",
-                    dateDissolved: "${party.getDateDissolved()}",
+                    wikiLink: "${party.getWiki_link()}",
                     countryID: "${party.getCountryID()}",
                     flagUrl: "${party.getFlagUrl()}"
                 },

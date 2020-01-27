@@ -149,8 +149,7 @@ public class MySQLPoliticianDao implements Politicians {
                 rs.getLong("id"),
                 rs.getString("name"),
                 rs.getString("description"),
-                rs.getDate("date_founded"),
-                rs.getDate("date_dissolved"),
+                rs.getString("wiki_link"),
                 rs.getLong("country_of_operation_id"),
                 rs.getString("flag_url")
         );
@@ -170,6 +169,7 @@ public class MySQLPoliticianDao implements Politicians {
                 rs.getString("name"),
                 rs.getString("description"),
                 rs.getString("wiki_link"),
+                rs.getString("head_shot_url"),
                 rs.getLong("user_id")
         );
     }

@@ -34,7 +34,7 @@ public class PoliticianUpdateServlet extends HttpServlet {
             }
         }
 
-        Politician politician = new Politician((String) request.getAttribute(""), (String) request.getAttribute(""), (String) request.getAttribute(""), (Long) request.getAttribute(""));
+        Politician politician = new Politician((String) request.getAttribute("name"), (String) request.getAttribute("description"), (String) request.getAttribute("wiki_link"), (String) request.getAttribute("head_shot_url"),(Long) request.getAttribute("user_id"));
 
         DaoFactory.getPoliticiansDao().insert(politician);
         for (Party party : politicianParties) {

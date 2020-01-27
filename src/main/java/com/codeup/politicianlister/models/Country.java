@@ -4,16 +4,19 @@ public class Country {
     private Long id;
     private String name;
     private String continent;
+    private String wiki_link;
 
-    public Country(Long id, String name, String continent) {
+    public Country(Long id, String name, String continent, String wiki_link) {
         this.id = id;
         this.name = name;
         this.continent = continent;
+        this.wiki_link = wiki_link;
     }
 
-    public Country(String name, String continent) {
+    public Country(String name, String continent, String wiki_link) {
         this.name = name;
         this.continent = continent;
+        this.wiki_link = wiki_link;
     }
 
     public Long getId() {
@@ -40,6 +43,11 @@ public class Country {
         this.continent = continent;
     }
 
+    public String getWiki_link() {
+        return wiki_link;
+    }
 
-
+    public void setWiki_link(String wiki_link) {
+        this.wiki_link = wiki_link;
+    }
 }

@@ -21,8 +21,8 @@ public class PartyUpdateServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 //        User user = (User) request.getSession().getAttribute("signed_in");
-        Party updated = new Party((String) request.getAttribute("name"), (String) request.getAttribute("description"), (Date) request.getAttribute("date_founded"), (Date) request.getAttribute("date_dissolved"), (Long) request.getAttribute("country_id"));
-        DaoFactory.getPartiesDao().updade(updated);
+        Party updated = new Party((String) request.getAttribute("name"), (String) request.getAttribute("description"),(String) request.getAttribute("wiki_link"), (Long) request.getAttribute("country_id"));
+        DaoFactory.getPartiesDao().update(updated);
         response.sendRedirect("/parties");
     }
 }

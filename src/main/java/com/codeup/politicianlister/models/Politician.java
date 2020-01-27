@@ -11,23 +11,26 @@ public class Politician {
     private String description;
     private Long userId;
     private String wikiLink;
+    private String head_shot_url;
     private List<Party> parties;
 
-    public Politician(Long id, String name, String description, String wiki_link, Long user_id) {
+    public Politician(Long id, String name, String description, String wiki_link,String head_shot_url, Long user_id) {
         Config config = new Config();
         MySQLPoliticianDao mySQLPoliticianDao = new MySQLPoliticianDao(config);
         this.id = id;
         this.name = name;
         this.description = description;
         this.wikiLink = wiki_link;
+        this.head_shot_url = head_shot_url;
         this.userId = user_id;
         this.parties = mySQLPoliticianDao.getPoliticianParties(id);
     }
 
-    public Politician(String name, String description, String wiki_link, Long user_id) {
+    public Politician(String name, String description, String wiki_link, String head_shot_url, Long user_id) {
         this.name = name;
         this.description = description;
         this.wikiLink = wiki_link;
+        this.head_shot_url = head_shot_url;
         this.userId = user_id;
     }
 
@@ -77,5 +80,13 @@ public class Politician {
 
     public void setWikiLink(String wiki_link) {
         this.wikiLink = wiki_link;
+    }
+
+    public String getHead_shot_url() {
+        return head_shot_url;
+    }
+
+    public void setHead_shot_url(String head_shot_url) {
+        this.head_shot_url = head_shot_url;
     }
 }

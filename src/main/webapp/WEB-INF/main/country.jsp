@@ -15,7 +15,7 @@
 <h1>Hello Country Page</h1>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-<div class="countries" id="country-card">
+<div class="country" id="country-card">
 
 </div>
 
@@ -28,7 +28,8 @@
         {
             id: "${country.id}",
             name: "${country.getName()}",
-            continent: "${country.getContinent()}"
+            continent: "${country.getContinent()}",
+            wikiLink: "${country.getWiki_link()}"
         }
 <%--        </c:forEach>--%>
     ;
@@ -38,8 +39,7 @@
         {
             name: "${party.getName()}",
             description: "${party.getDescription()}",
-            dateFounded: "${party.getDateFounded()}",
-            dateDissolved: "${party.getDateDissolved()}",
+            wikiLink: "${party.getWiki_link()}",
             flagUrl: "${party.getFlagUrl()}"
         },
             </c:forEach>];
@@ -50,13 +50,13 @@
         let newCard = "";
         newCard += '<div class="card float-left border-dark-shade">\n' +
             '                    <div class="card-body bg-soft-white ">\n' +
-            '                        <h4 class="card-title text-center ">' + country.name + '</h4>\n' +
+            '                        <h3 class="card-title text-center ">' + country.name + '</h3>\n' +
+            '                        <h4 class="card-title text-center "><a target="_blank" href="' + country.wikiLink + '">Wikipedia Page</h4></a>\n' +
             '                        <h6 class="card-subtitle mb-2 text-muted text-center">' + country.continent + '</h6>\n';
     for(let i = 0; i < parties.length; i++){
         newCard += '<h4 class="card-title text-center "><form action="/party" method="POST"> <input type="hidden" name="name" value="' + parties[i].name + '"> <button type="submit">' + parties[i].name + '</button></form></h4>';
         newCard += '<p class="card-text text-center text-muted">' + parties[i].description + '</p>';
-        newCard += '<p class="card-text text-center text-muted">' + parties[i].dateFounded + ' - '+ parties[i].dateDissolved +'</p>';
-        newCard += '<p class="card-text text-center text-muted">' + parties[i].flagUrl + '</p>';
+        newCard += '<img style = "width:300px; height: 200px" src = '+ parties[i].flagUrl +' />';
     }
         newCard += '</div></div>';
         cardArea.innerHTML += newCard;

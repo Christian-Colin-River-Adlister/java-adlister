@@ -153,6 +153,7 @@ public class MySQLPartiesDao implements Parties {
                 rs.getString("name"),
                 rs.getString("description"),
                 rs.getString("wiki_link"),
+                rs.getString("head_shot_url"),
                 rs.getLong("user_id")
         );
     }

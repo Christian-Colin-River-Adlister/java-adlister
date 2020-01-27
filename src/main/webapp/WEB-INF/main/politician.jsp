@@ -21,13 +21,13 @@
             description: "${politician.getDescription()}",
             userId: "${politician.getUserId()}",
             wiki: "${politician.getWikiLink()}",
+            headShot: "${politician.getHead_shot_url()}",
             parties: [
                 <c:forEach var="party" items="${politician.getParties()}">
                 {
                     name: "${party.getName()}",
                     description: "${party.getDescription()}",
-                    dateFounded: "${party.getDateFounded()}",
-                    dateDissolved: "${party.getDateDissolved()}",
+                    wikiLink: "${party.getWiki_link()}",
                     country: "${party.getCountry()}",
                     flagUrl: "${party.getFlagUrl()}"
                 },
@@ -45,7 +45,6 @@
         '                        <h6 class="card-subtitle mb-2 text-muted text-center"><a target="_blank" href="' + politician.wiki + '">See ' + politician.name + '\'s wiki page</a></h6>\n';
     for(let i = 0; i < politician.parties.length; i++){
         newCard += '<h4 class="card-title text-center "><form action="/party" method="POST"> <input type="hidden" name="name" value="' + politician.parties[i].name + '"> <button type="submit">' + politician.parties[i].name + '</button></form>' + '</h4>\n';
-        newCard += "<p class=\"card-text text-center\">" + politician.parties[i].dateFounded + ' - ' + politician.parties[i].dateDissolved + "</p>\n";
         newCard += "<p class=\"card-text text-center\">Located in: " + "<form action='/country' method='POST'><input type='hidden' name='name' value='"+ politician.parties[i].country +"'><button type='submit' value='"+ politician.parties[i].country +"'>" + politician.parties[i].country + "</button></p></form>";
         newCard += "<img style='width: 300px!important;height: 150px!important;' src='"+ politician.parties[i].flagUrl +"' alt='icon' class=''>";
     }
