@@ -1,4 +1,4 @@
-<%@ page import="com.codeup.comradlister.models.Party" %>
+<%@ page import="com.codeup.politicianlister.models.Party" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -21,13 +21,13 @@
     <div class="row">
         <div class="col-6">
             <div class="card">
-                <h2 class="mx-auto text-center">Would you like to enter a new comrade?</h2>
-                <form id="comradeform" action="/comrades/create" method="post" class="w-75 mx-auto">
+                <h2 class="mx-auto text-center">Would you like to enter a new politician?</h2>
+                <form id="comradeform" action="/politician/create" method="post" class="w-75 mx-auto">
                     <input class = "w-100 text-center mt-3" type="text" name="name" placeholder="Full name">
                     <br>
                     <textarea class="text-center mt-3 w-100" rows="4" cols="50" name="description" placeholder="Description here"></textarea><br>
-                    <input class="w-100 text-center mt-3"type="text" name="wiki_link" placeholder="Wikipedia link for the associated comrade"><br>
-                    <div class="mt-3 w-100">
+                    <input class="w-100 text-center mt-3" type="text" name="wiki_link" placeholder="Wikipedia link for the associated politician"><br>
+                    <div class = "w-100 mt-3">
                         <select name="parties" id="parties" class="w-100">
                             <c:forEach var="party" items="${sessionScope.parties}">
                                 <option class="parties w-100" value="${party.name}">${party.name}</option>
@@ -44,11 +44,11 @@
         </div>
 
         <c:choose>
-            <c:when test="${sessionScope.signed_in.is_Supreme_leader}">
+            <c:when test="${sessionScope.signed_in.is_Admin}">
                 <div class="col-6">
                     <div class="card d-flex justify-content-center">
                         <h2 class="text-center">Admins can add parties, enter information below</h2>
-                        <form id="partyform" action="/comrades/create/party" method="post" class="mx-auto w-75">
+                        <form id="partyform" action="/party/create" method="post" class="mx-auto w-75">
                             <input class="w-100 text-center mt-3" type="text" name="name" placeholder="Name of the party">
                             <br>
                             <textarea class="text-center w-100 mt-3" rows="4" cols="50" name="description" placeholder="Description here"></textarea><br>

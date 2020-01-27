@@ -4,10 +4,9 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <a class="navbar-brand" href="/">Home Page</a>
-            <a class="navbar-brand" href="/comrades">Comrades</a>
+            <a class="navbar-brand" href="/politicians">Politicians</a>
             <a class="navbar-brand" href="/countries">Countries</a>
             <a class="navbar-brand" href="/parties">Parties</a>
-            <a class="navbar-brand" href="/">Home Page</a>
         </div>
         <ul class="nav navbar-nav navbar-right" style="display: flex; flex-direction: row">
             <c:choose>
@@ -17,6 +16,7 @@
                 </c:when>
                 <c:otherwise>
                     <li><a href="/login">Login</a></li>
+                    <li class="ml-3"><a href="/register">Register</a></li>
                 </c:otherwise>
             </c:choose>
         </ul>
